@@ -1,0 +1,120 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card, #0f0f0f);
+  width: 100%;
+  height: 100%; /* Заставляет все карточки в ряду быть одной высоты */
+  transition: transform 0.2s ease;
+  border: 1px solid var(--border);
+}
+
+/* ====================================
+   БЛОК С ИЗОБРАЖЕНИЕМ
+   ==================================== */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Делаем квадрат, чтобы убрать лишнюю высоту */
+  background-color: #2a2a2a;
+  overflow: hidden;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: var(--accent, #d6ff00);
+  color: #000;
+  padding: 4px 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px; /* Уменьшили бейдж */
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+/* ====================================
+   ОСНОВНОЙ КОНТЕНТ
+   ==================================== */
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 16px; /* Уменьшили "воздух" по краям */
+  flex-grow: 1;
+}
+
+.category {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; /* Сделали компактнее */
+  font-weight: 600;
+  color: var(--text-dim, #555555);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px; /* Уменьшили заголовок (было 24px) */
+  font-weight: 800;
+  color: var(--text, #ffffff);
+  text-transform: uppercase;
+  margin: 0 0 8px 0;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+/* ====================================
+   РЕЙТИНГ
+   ==================================== */
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px; /* Придвинули футер ближе */
+}
+
+.reviewCount {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dim, #444444);
+}
+
+/* ====================================
+   ФУТЕР (Цена и Кнопка)
+   ==================================== */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+.prices {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.currentPrice {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 26px; /* Уменьшили цену (было 32px) */
+  font-weight: 600;
+  color: var(--accent, #d6ff00);
+  line-height: 1;
+}
+
+.oldPrice {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-dim, #555555);
+  text-decoration: line-through;
+}

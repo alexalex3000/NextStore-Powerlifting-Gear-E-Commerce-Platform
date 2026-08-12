@@ -1,0 +1,54 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+}
+
+/* Шапка блока: Количество продуктов слева, селект справа */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border);
+
+  h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text, #ffffff);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+
+    /* Акцентная цифра слева (например, "8") */
+    span {
+      color: var(--accent, #d6ff00);
+      margin-right: 6px;
+    }
+  }
+}
+
+/* Сетка карточек товаров с полным адаптивом */
+.gridContainer {
+  display: grid;
+  /* Автоматически подстраивает колонки: каждая карточка минимум 260px,
+     на больших экранах они будут занимать равное пространство (1fr) */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  width: 100%;
+}
+
+/* Адаптивность для мобильных экранов */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .gridContainer {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
