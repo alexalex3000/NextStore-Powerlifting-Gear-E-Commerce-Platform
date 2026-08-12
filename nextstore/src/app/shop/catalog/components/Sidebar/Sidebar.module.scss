@@ -1,14 +1,12 @@
 .sidebar {
   width: 100%;
-  max-width: 280px; /* Ширина как на макете */
+  max-width: 280px;
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-/* ====================================
-   ШАПКА САЙДБАРА
-   ==================================== */
+
 .header {
   display: flex;
   align-items: center;
@@ -31,9 +29,6 @@
   }
 }
 
-/* ====================================
-   ОБЩИЕ СТИЛИ СЕКЦИЙ
-   ==================================== */
 .section {
   display: flex;
   flex-direction: column;
@@ -51,13 +46,10 @@
   border-bottom: 1px solid var(--border);
 }
 
-/* ====================================
-   СПИСКИ (Категории и Рейтинги)
-   ==================================== */
 .list {
   display: flex;
   flex-direction: column;
-  gap: -1px; /* Схлопываем рамки соседних элементов */
+  gap: -1px;
 }
 
 .categories{
@@ -72,14 +64,14 @@
   padding: 14px 16px;
   background-color: transparent;
   border: 1px solid var(--border);
-  margin-bottom: -1px; /* Наложение рамок друг на друга */
+  margin-bottom: -1px;
   cursor: pointer;
-  position: relative; /* Для работы z-index при наведении */
+  position: relative;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 
   &:hover {
     background-color: var(--card-2);
-    z-index: 1; /* Выводим рамку вперед */
+    z-index: 1;`
     border-color: var(--text-dim);
   }
 }
@@ -89,9 +81,9 @@
   font-weight: 600;
   font-size: 14px;
   letter-spacing: -0.6px;
-  color: var(--text-dim); /* По умолчанию серый */
+  color: var(--text-dim);
   text-transform: uppercase;
-  flex: 1; /* Выталкивает правые элементы (счетчики) в конец */
+  flex: 1;
   transition: color 0.2s ease;
 }
 
@@ -101,9 +93,6 @@
   color: var(--text-dim);
 }
 
-/* ====================================
-   ЧЕКБОКСЫ КАТЕГОРИЙ
-   ==================================== */
 .checkbox {
   appearance: none;
   -webkit-appearance: none;
@@ -115,14 +104,13 @@
   background-color: transparent;
   cursor: pointer;
   position: relative;
-  flex-shrink: 0; /* Чтобы чекбокс не сжимался */
+  flex-shrink: 0;
   transition: all 0.2s ease;
 
   &:checked {
     background-color: var(--accent);
     border-color: var(--accent);
 
-    /* Отрисовка галочки CSS-силами */
     &::after {
       content: '';
       position: absolute;
@@ -137,14 +125,10 @@
   }
 }
 
-/* Если чекбокс отмечен, красим соседний span.itemName в цвет акцента */
 .checkbox:checked ~ .itemName {
   color: var(--accent);
 }
 
-/* ====================================
-   ДИАПАЗОН ЦЕН
-   ==================================== */
 .priceHeader {
   display: flex;
   justify-content: space-between;
@@ -177,11 +161,7 @@
   cursor: pointer;
 }
 
-/* ====================================
-   ЗВЕЗДЫ И РАДИО-КНОПКИ
-   ==================================== */
 .hiddenRadio {
-  /* Полностью скрываем нативный кружок радио-кнопки из потока документа */
   appearance: none;
   -webkit-appearance: none;
   position: absolute;
@@ -194,7 +174,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-right: 12px; /* Отступ от звезд до текста */
+  margin-right: 12px;
 
   svg {
     width: 14px;
@@ -212,17 +192,13 @@
   }
 }
 
-/* Если скрытое радио отмечено, текст рейтинга тоже становится акцентным */
 .hiddenRadio:checked ~ .itemName {
   color: var(--accent);
 }
 
-/* ====================================
-   АДАПТИВ (Мобильные устройства)
-   ==================================== */
 @media (max-width: 768px) {
   .sidebar {
-    max-width: 100%; /* Заполняем всю ширину, если сайдбар в бургер-меню */
+    max-width: 100%;
     gap: 24px;
   }
 

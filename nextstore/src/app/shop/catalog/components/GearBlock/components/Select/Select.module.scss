@@ -1,7 +1,7 @@
 .selectWrapper {
   position: relative;
   width: 100%;
-  max-width: 220px; /* Можешь настроить ширину под себя */
+  max-width: 220px;
   font-family: 'Barlow Condensed', sans-serif;
   user-select: none;
 }
@@ -28,7 +28,6 @@
     color: var(--text);
   }
 
-  /* Стрелочка */
   &::after {
     content: '▼';
     font-size: 9px;
@@ -39,7 +38,7 @@
 
 .optionsList {
   position: absolute;
-  top: calc(100% - 1px); /* Стыкуется вплотную с учетом рамки */
+  top: calc(100% - 1px);
   left: 0;
   width: 100%;
   background-color: var(--card, #121212);

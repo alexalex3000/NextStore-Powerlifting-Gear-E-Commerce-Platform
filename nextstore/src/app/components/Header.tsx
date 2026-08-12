@@ -6,13 +6,11 @@ export default function Header() {
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-                {/* Логотип */}
                 <Link href="/" className={styles.logo}>
                     <Zap />
                     <span className={styles.logoText}>NEXTGEAR</span>
                 </Link>
 
-                {/* Поиск */}
                 <div className={styles.searchWrapper}>
                     <Search className={styles.searchIcon} />
                     <input
@@ -22,7 +20,6 @@ export default function Header() {
                     />
                 </div>
 
-                {/* Правый блок (Корзина + Профиль) */}
                 <div className={styles.actions}>
                     <Link href="/shop/basket" className={styles.cartLink}>
                         <ShoppingCart />

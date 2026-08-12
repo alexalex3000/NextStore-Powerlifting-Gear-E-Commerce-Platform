@@ -5,13 +5,11 @@ import StarBlock from "@/app/shop/components/StarBlock/StarBlock";
 export default function Sidebar() {
     return (
         <aside className={styles.sidebar}>
-            {/* Заголовок сайдбара */}
             <div className={styles.header}>
                 <SlidersHorizontal className={styles.headerIcon} />
                 <h1 className={styles.headerTitle}>Filters</h1>
             </div>
 
-            {/* Фильтр: Категории */}
             <div className={styles.categories}>
                 <div className={styles.section}>
                     <h2 className={styles.sectionTitle}>Categories</h2>
@@ -61,7 +59,6 @@ export default function Sidebar() {
                 </div>
             </div>
 
-            {/* Фильтр: Рейтинг */}
             <div className={styles.section}>
                 <h2 className={styles.sectionTitle}>Min rating</h2>
                 <div className={styles.list}>

@@ -3,34 +3,30 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: var(--accent, #d6ff00); /* Тот самый кислотно-желтый/зеленый */
+  background-color: var(--accent, #d6ff00);
   color: #000000;
   border: none;
   padding: 7px 12px;
   cursor: pointer;
 
-  /* Типографика */
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.72px;
 
-  /* Плавность */
   transition: background-color 0.2s ease, transform 0.1s ease;
 
   &:hover {
-    background-color: #c4ea00; /* Чуть затемняем при наведении */
+    background-color: #c4ea00;
   }
 
   &:active {
-    transform: translateY(2px); /* Эффект нажатия */
+    transform: translateY(2px);
   }
 }
 
 .icon {
   width: 16px;
   height: 16px;
-  /* stroke: currentColor означает, что цвет линий SVG
-     автоматически берется из цвета текста (color: #000000) */
 }
