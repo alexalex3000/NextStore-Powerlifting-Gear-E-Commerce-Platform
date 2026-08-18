@@ -2,14 +2,35 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./Select.module.scss";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {wordTrim} from "@/utils/wordTrim";
 
 export default function Select() {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const path = usePathname()
     const options = ["Featured", "Price Low", "Price High", "Top Rated", "Most Reviews"];
 
     const [activeOption, setActiveOption] = useState(options[0]);
     const [isActiveSelect, setActiveSelect] = useState<boolean>(false);
 
     const selectRef = useRef<HTMLDivElement>(null);
+
+    const handleClick = (item:string) => {
+        setActiveOption(item);
+        setActiveSelect(false);
+
+        const trimmedItem = wordTrim(item);
+
+        const params = new URLSearchParams(searchParams.toString());
+        if(trimmedItem){
+            params.set("sort", trimmedItem)
+        }
+        else{
+            params.delete("sort")
+        }
+        router.replace(`${path}?${params.toString()}`, {scroll: false});
+    }
 
     useEffect(() => {
         const handleActive = (event: MouseEvent) => {
@@ -40,10 +61,7 @@ export default function Select() {
                         <div
                             key={index}
                             className={`${styles.option} ${item == activeOption ? styles.selectedOpt : ""}`}
-                            onClick={() => {
-                                setActiveOption(item);
-                                setActiveSelect(false);
-                            }}
+                            onClick={() => {handleClick(item)}}
                         >
                             {item}
                         </div>
