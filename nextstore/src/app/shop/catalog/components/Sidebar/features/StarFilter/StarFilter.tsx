@@ -1,44 +1,56 @@
 "use client"
 
 import styles from "@/app/shop/catalog/components/Sidebar/Sidebar.module.scss";
-import StarBlock from "@/app/shop/components/StarBlock/StarBlock";
-import {wordTrim} from "@/utils/wordTrim";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import StarItem from "@/app/shop/catalog/components/Sidebar/features/StarFilter/ui/StarItem";
 
+const STARS_OPTIONS = [4, 3, 2, "all"] as const;
 
 export default function StarFilter() {
-    const path = usePathname()
-    const searchParams = useSearchParams()
-    const router = useRouter()
+    const path = usePathname();
+    const searchParams = useSearchParams();
 
-    const activeStar = searchParams.get("star") ?? ""
+    const activeStar = searchParams.get("star") ?? "";
 
-    const handleClick = (item: number) => {
-        const params = new URLSearchParams(searchParams.toString());
+    const handleClick = (item: number | "all") => {
+        const params = new URLSearchParams(window.location.search);
 
-        if(activeStar == `${item}`){
-            params.delete("star")
-        } else{
-            params.set("star", `${item}`)
+        if (item === "all") {
+            params.delete("star");
+        } else {
+            const starStr = item.toString();
+            if (activeStar === starStr) {
+                params.delete("star");
+            } else {
+                params.set("star", starStr);
+            }
         }
-        router.replace(`${path}?${params.toString()}`, {scroll: false});
-    };
 
-    const arrOfStars = [4,3,2, "all"]
+        const queryString = params.toString();
+        const newUrl = queryString ? `${path}?${queryString}` : path;
+
+        window.history.replaceState(null, '', newUrl);
+    };
 
     return (
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Min rating</h2>
             <div className={styles.list}>
-                {
-                    arrOfStars.map((star, i) => (
-                        <div key={i}>
-                            <StarItem numOfStar={star} onClick={() => handleClick(typeof star === "number" ? star : 1)}/>
-                        </div>
-                    ))
-                }
+                {STARS_OPTIONS.map((star) => {
+                    const isSelected = star === "all"
+                        ? !activeStar
+                        : activeStar === star.toString();
+
+                    return (
+                        <StarItem
+                            key={star}
+                            numOfStar={star}
+                            isActive={isSelected}
+                            onClick={() => handleClick(star)}
+                        />
+                    );
+                })}
             </div>
         </div>
-    )
+    );
 }

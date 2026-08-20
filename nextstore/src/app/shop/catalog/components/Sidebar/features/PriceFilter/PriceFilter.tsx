@@ -1,34 +1,51 @@
 "use client"
 
 import styles from "@/app/shop/catalog/components/Sidebar/Sidebar.module.scss";
-import {ChangeEvent, useEffect, useRef} from "react";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import { ChangeEvent, useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface Props {
     maxValue: number;
 }
 
-export default function PriceFilter({maxValue}: Props) {
-    const path = usePathname()
-    const router = useRouter()
-    const searchParams = useSearchParams()
+export default function PriceFilter({ maxValue }: Props) {
+    const path = usePathname();
+    const searchParams = useSearchParams();
+
+    const currentMaxPrice = searchParams.get("maxPrice") ?? maxValue.toString();
 
     useEffect(() => {
-        router.replace(`${path}?maxPrice=${maxValue}`)
-    }, []);
+        const params = new URLSearchParams(window.location.search);
+        let updated = false;
+
+        if (!params.has("maxPrice")) {
+            params.set("maxPrice", maxValue.toString());
+            updated = true;
+        }
+
+        if (!params.has("star")) {
+            params.set("star", "1");
+            updated = true;
+        }
+
+        if (updated) {
+            window.history.replaceState(null, '', `${path}?${params.toString()}`);
+        }
+    }, [maxValue, path]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const params = new URLSearchParams(searchParams.toString())
-        params.set("maxPrice", event.target.value)
-        router.replace(`${path}?${params.toString()}`,{scroll: false})
-    }
+        const params = new URLSearchParams(window.location.search);
+        params.set("maxPrice", event.target.value);
+
+        window.history.replaceState(null, '', `${path}?${params.toString()}`);
+    };
 
     return (
         <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Price range</h2>
 
             <div className={styles.priceHeader}>
-                <span className={styles.priceAccent}>Up to ${searchParams.get("maxPrice")}</span>
+                <span className={styles.priceAccent}>Up to ${currentMaxPrice}</span>
             </div>
 
             <input
@@ -36,7 +53,7 @@ export default function PriceFilter({maxValue}: Props) {
                 type="range"
                 min="0"
                 max={maxValue}
-                defaultValue={maxValue}
+                value={currentMaxPrice}
                 className={styles.rangeInput}
             />
 
@@ -45,5 +62,5 @@ export default function PriceFilter({maxValue}: Props) {
                 <span className={styles.priceDim}>${maxValue}</span>
             </div>
         </div>
-    )
+    );
 }

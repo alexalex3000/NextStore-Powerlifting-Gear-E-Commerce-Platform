@@ -196,7 +196,7 @@
   color: var(--accent);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 910px) {
   .sidebar {
     max-width: 100%;
     gap: 24px;
@@ -210,5 +210,32 @@
 
   .listItem {
     padding: 12px;
+  }
+}
+
+@media (max-width: 550px) {
+  .sidebar {
+    max-width: 100%;
+    width: 100%;
+    gap: 16px;
+  }
+
+  .listItem {
+    padding: 10px 12px;
+  }
+
+  .itemName {
+    font-size: 13px;
+  }
+
+  .checkbox {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+  }
+
+  /* Делаем слайдер удобнее для нажатия пальцем */
+  .rangeInput {
+    height: 24px; // Увеличиваем область клика
   }
 }

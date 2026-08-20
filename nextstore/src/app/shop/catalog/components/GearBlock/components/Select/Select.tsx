@@ -22,14 +22,18 @@ export default function Select() {
 
         const trimmedItem = wordTrim(item);
 
-        const params = new URLSearchParams(searchParams.toString());
+        const params = new URLSearchParams(window.location.search);
         if(trimmedItem){
             params.set("sort", trimmedItem)
         }
         else{
             params.delete("sort")
         }
-        router.replace(`${path}?${params.toString()}`, {scroll: false});
+
+        const queryString = params.toString();
+        const newUrl = queryString ? `${path}?${queryString}` : path;
+
+        window.history.replaceState(null, '', newUrl);
     }
 
     useEffect(() => {

@@ -1,10 +1,7 @@
-"use client"
-
 import styles from "./GearCart.module.scss";
 import StarBlock from "@/app/shop/components/StarBlock/StarBlock";
 import AddButton from "@/app/shop/catalog/components/GearCart/ui/AddButton/AddButton";
 import Link from "next/link";
-import {useRouter, useSearchParams} from "next/navigation";
 
 export default function GearCart() {
     return (

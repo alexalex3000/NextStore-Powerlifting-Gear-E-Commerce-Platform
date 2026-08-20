@@ -3,15 +3,24 @@ import StarBlock from "@/app/shop/components/StarBlock/StarBlock";
 
 interface Props {
     numOfStar: number | string;
+    isActive: boolean;
     onClick: () => void;
 }
 
-export default function StarItem({numOfStar, onClick}: Props) {
+export default function StarItem({ numOfStar, isActive, onClick }: Props) {
     return (
-        <label onChange={onClick} className={styles.listItem}>
-            <input type="radio" name="rating" className={styles.hiddenRadio} />
+        <label className={styles.listItem}>
+            <input
+                type="radio"
+                name="rating"
+                checked={isActive}
+                onChange={onClick}
+                className={styles.hiddenRadio}
+            />
             <StarBlock numOfStars={typeof numOfStar === "number" ? numOfStar : 1} />
-            <span className={styles.itemName}>{typeof numOfStar === "number" ? `${numOfStar}+ Stars` : "All"}</span>
+            <span className={styles.itemName}>
+                {typeof numOfStar === "number" ? `${numOfStar}+ Stars` : "All"}
+            </span>
         </label>
-    )
+    );
 }

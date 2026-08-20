@@ -1,24 +1,18 @@
 import Link from "next/link";
 import { ShoppingCart, Zap, Search, User } from "lucide-react";
 import styles from "./Header.module.scss";
+import SearchBlock from "@/app/components/Header/entities/SearchBlock";
 
 export default function Header() {
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-                <Link href="/" className={styles.logo}>
+                <Link href="/nextstore/public" className={styles.logo}>
                     <Zap />
                     <span className={styles.logoText}>NEXTGEAR</span>
                 </Link>
 
-                <div className={styles.searchWrapper}>
-                    <Search className={styles.searchIcon} />
-                    <input
-                        type="text"
-                        placeholder="Search equipment..."
-                        className={styles.searchInput}
-                    />
-                </div>
+                <SearchBlock/>
 
                 <div className={styles.actions}>
                     <Link href="/shop/basket" className={styles.cartLink}>
