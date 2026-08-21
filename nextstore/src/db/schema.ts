@@ -1,6 +1,29 @@
 import {integer, pgTable, timestamp, uuid, varchar} from "drizzle-orm/pg-core";
 import {relations} from "drizzle-orm";
 
+export const users = pgTable("users", {
+    id: uuid("id").defaultRandom().primaryKey(),
+    email: varchar("email").unique().notNull(),
+    passwordHash: varchar("password_hash").notNull(),
+})
+
+export const sessions = pgTable("sessions", {
+    id: varchar("id").primaryKey(),
+    userId: uuid("user_id").notNull().references(() => users.id),
+    expiresAt: timestamp("expires_at", { withTimezone: true, mode: "date" }).notNull(),
+})
+
+export const usersRelations = relations(users, ({many}) => ({
+    user: many(sessions),
+}))
+
+export const sessionsRelations = relations(sessions, ({one}) => ({
+    sessions: one(users, {
+        fields: [sessions.userId],
+        references: [users.id],
+    }),
+}))
+
 export const product = pgTable("product", {
     id: uuid("id").defaultRandom().primaryKey(),
     type: varchar("type").notNull(),

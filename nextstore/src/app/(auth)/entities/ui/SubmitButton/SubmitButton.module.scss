@@ -1,0 +1,37 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px; /* Такая же высота, как у инпута, для гармонии в форме */
+  background-color: #ccff00; /* Неоновый желто-зеленый цвет */
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  font-family: inherit;
+
+  /* Эффект при наведении на активную кнопку */
+  &:hover:not(:disabled) {
+    background-color: #bce600;
+  }
+
+  /* Стили для неактивного состояния (!isActive) */
+  &:disabled {
+    background-color: #2a2a2a; /* Темно-серый фон */
+    color: #6b6b6b;            /* Тусклый текст */
+    cursor: not-allowed;
+  }
+}
+
+.icon {
+  margin-right: 10px; /* Отступ между стрелкой и текстом */
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 700; /* Жирное начертание, как на макете */
+  letter-spacing: 0.05em; /* Небольшое межбуквенное расстояние */
+  text-transform: uppercase; /* Все буквы заглавные */
+}

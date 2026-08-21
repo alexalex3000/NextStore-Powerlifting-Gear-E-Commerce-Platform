@@ -8,6 +8,13 @@
       "when": 1786991795320,
       "tag": "0000_perpetual_captain_stacy",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787257127519,
+      "tag": "0001_sticky_ben_grimm",
+      "breakpoints": true
     }
   ]
 }
