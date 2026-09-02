@@ -10,7 +10,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
     placeholder: string;
     name: string;
     error?: string;
-    isSearch: boolean;
+    isSearch?: boolean;
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
