@@ -13,13 +13,15 @@
   },
   "dependencies": {
     "dotenv": "^17.4.2",
-    "drizzle-kit": "^0.31.10",
+    "drizzle-kit": "^0.18.1",
     "drizzle-orm": "^0.45.2",
+    "lucide-react": "^1.31.0",
     "next": "16.3.4",
     "next-safe-action": "^8.6.1",
     "postgres": "^3.4.9",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "scss": "^0.2.4",
     "zod": "^4.5.4"
   },
   "devDependencies": {
@@ -30,6 +32,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
+    "sass": "^1.103.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

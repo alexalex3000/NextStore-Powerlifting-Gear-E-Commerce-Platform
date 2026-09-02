@@ -1,7 +1,27 @@
-import styles from "./Logo.module.scss"
+import styles from "./Logo.module.scss";
+import {Zap} from "lucide-react";
+import Link from "next/link";
 
-export default function Logo(){
+interface Props{
+    size: "small" | "large";
+}
+
+export default function Logo({size}: Props){
     return (
-        <div></div>
+        <>
+            {
+                size === "small" ? (
+                    <Link href="/public" className={styles.logo}>
+                        <Zap />
+                        <span className={styles.logoText}>NEXTGEAR</span>
+                    </Link>
+                ) : (
+                    <Link href="/nextstore/public" className={styles.bigLogo}>
+                        <Zap />
+                        <span className={styles.bigLogoText}>NEXTGEAR</span>
+                    </Link>
+                )
+            }
+        </>
     )
 }

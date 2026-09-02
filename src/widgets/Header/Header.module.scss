@@ -1,0 +1,95 @@
+.header {
+  max-width: 100%;
+  width: 100%;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-left: auto;
+
+  .cartLink,
+  .userAvatar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--card-2);
+      border-color: var(--text-dim);
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .cartLink .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--accent);
+    color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 800;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+
+    & > :global(*:first-child) {
+      order: 1;
+    }
+  }
+
+  .actions {
+    order: 2;
+    margin-left: auto;
+    gap: 8px;
+
+    .cartLink,
+    .userAvatar {
+      width: 34px;
+      height: 34px;
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

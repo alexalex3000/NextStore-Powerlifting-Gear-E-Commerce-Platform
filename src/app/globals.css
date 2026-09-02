@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --accent: #b8f000;
+  --accent-dim: rgba(184, 240, 0, 0.08);
+  --accent-border: rgba(184, 240, 0, 0.25);
+  --bg: #080808;
+  --card: #101010;
+  --card-2: #161616;
+  --border: #202020;
+  --border-subtle: #141414;
+  --text: #e4e4e4;
+  --text-muted: #4a4a4a;
+  --text-dim: #888;
+  --blue: #00c8ff;
+  --red: #ff3535;
 }
 
 @theme inline {
@@ -23,4 +34,71 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-barlow-condensed), sans-serif;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #222 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 3px;
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--border);
+  outline: none;
+  border-radius: 1px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 6px rgba(184, 240, 0, 0.4);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg);
+}
+
+input[type="password"]::-webkit-clear-button,
+input[type="password"]::-webkit-outer-spin-button,
+input[type="password"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
+main{
+  padding: 0 20px;
+}
+
+*{
+  font-family: 'Barlow Condensed', sans-serif;
 }

@@ -1,0 +1,70 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+
+  .logoText {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .logo {
+    order: 1;
+
+    .logoText {
+      font-size: 20px;
+    }
+  }
+}
+
+.bigLogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  svg {
+    width: 35px;
+    height: 35px;
+    fill: currentColor;
+  }
+
+  .bigLogoText {
+    font-size: 35px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .bigLogo {
+    order: 1;
+
+    .bigLogoText {
+      font-size: 20px;
+    }
+  }
+}
