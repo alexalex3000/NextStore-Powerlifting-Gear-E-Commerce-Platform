@@ -1,0 +1,43 @@
+.sidebar {
+  width: 100%;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .headerIcon {
+    color: var(--accent);
+    width: 18px;
+    height: 18px;
+  }
+
+  .headerTitle {
+    color: var(--text-dim);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+}
+
+@media (max-width: 910px) {
+  .sidebar {
+    max-width: 100%;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 550px) {
+  .sidebar {
+    max-width: 100%;
+    width: 100%;
+    gap: 16px;
+  }
+}

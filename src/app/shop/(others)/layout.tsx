@@ -5,7 +5,9 @@ export default function OthersLayout({children}: {children: ReactNode}) {
     return (
         <div>
             <Header isSearch={false}/>
-            {children}
+            <main className="p-4">
+                {children}
+            </main>
         </div>
     )
 }

@@ -4,8 +4,10 @@ export default function CatalogLayout({children, modal}: {children: React.ReactN
     return (
         <div>
             <Header isSearch={true}/>
-            {modal}
-            {children}
+            <main className="p-4">
+                {modal}
+                {children}
+            </main>
         </div>
     )
 }

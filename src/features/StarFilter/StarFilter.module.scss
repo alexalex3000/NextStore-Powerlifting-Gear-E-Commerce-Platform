@@ -1,0 +1,95 @@
+.stars {
+  width: 100%;
+
+  & span {
+    color: white;
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionTitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 16px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: -1px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  background-color: transparent;
+  border: 1px solid var(--border);
+  margin-bottom: -1px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--card-2);
+    z-index: 1;
+    border-color: var(--text-dim);
+  }
+}
+
+.itemName {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.6px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  flex: 1;
+  transition: color 0.2s ease;
+}
+
+.itemCount {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.innerFilter{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+@media (max-width: 910px) {
+  .sectionTitle {
+    font-size: 14px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+  }
+
+  .listItem {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 550px) {
+  .listItem {
+    padding: 10px 12px;
+  }
+
+  .itemName {
+    font-size: 13px;
+  }
+}
