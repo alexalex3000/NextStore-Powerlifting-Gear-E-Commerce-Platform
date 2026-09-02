@@ -11,20 +11,20 @@ export default function StarFilter() {
 
     const starInner = [
         {
-            count: 1,
-            title: "ALL"
-        },
-        {
-            count: 2,
-            title: "2+ STARS"
+            count: 4,
+            title: "4+ STARS"
         },
         {
             count: 3,
             title: "3+ STARS"
         },
         {
-            count: 4,
-            title: "4+ STARS"
+            count: 2,
+            title: "2+ STARS"
+        },
+        {
+            count: 1,
+            title: "ALL"
         },
     ]
 

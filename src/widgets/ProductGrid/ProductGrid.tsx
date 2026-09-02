@@ -1,5 +1,14 @@
+import ProductCard from "@/entities/product/ui/ProductCard/ProductCard";
+import styles from "./ProductGrid.module.scss"
+
 export default function ProductGrid(){
     return (
-        <div></div>
+        <div className={styles.grid}>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+            <ProductCard/>
+        </div>
     )
 }
