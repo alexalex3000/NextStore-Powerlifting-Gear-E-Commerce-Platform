@@ -1,0 +1,21 @@
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #000;
+  padding: 4px 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.bestseller{
+  background-color: var(--accent, #d6ff00);
+}
+
+.lowStock{
+  background-color: var(--red);
+}

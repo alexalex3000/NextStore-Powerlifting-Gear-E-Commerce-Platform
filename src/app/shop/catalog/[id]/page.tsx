@@ -1,5 +1,9 @@
-export default function ProductPage(){
+import ProductPage from "@/entities/product/ui/pageUi/ProductPage/ProductPage";
+
+export default function ProductsPage(){
     return (
-        <div></div>
+        <div>
+            <ProductPage/>
+        </div>
     )
 }

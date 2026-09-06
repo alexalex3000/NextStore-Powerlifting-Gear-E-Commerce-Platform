@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Input from "@/shared/ui/Input/Input";
-import SubmitButton from "@/shared/ui/SubmitButton/SubmitButton";
+import SubmitButton from "@/shared/ui/buttons/SubmitButton/SubmitButton";
 import styles from "./LoginForm.module.scss";
 import { useActionState } from "react";
 import { loginDrop } from "@/entities/user/api/login.action";

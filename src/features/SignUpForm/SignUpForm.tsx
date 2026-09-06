@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Input from "@/shared/ui/Input/Input";
-import SubmitButton from "@/shared/ui/SubmitButton/SubmitButton";
+import SubmitButton from "@/shared/ui/buttons/SubmitButton/SubmitButton";
 import styles from "../LoginForm/LoginForm.module.scss"; // Проверьте правильность пути
 import { useActionState } from "react";
 import { Errors } from "@/features/LoginForm/LoginForm";

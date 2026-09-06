@@ -16,7 +16,7 @@ export default function Logo({size}: Props){
                         <span className={styles.logoText}>NEXTGEAR</span>
                     </Link>
                 ) : (
-                    <Link href="/nextstore/public" className={styles.bigLogo}>
+                    <Link href="/shop/catalog" className={styles.bigLogo}>
                         <Zap />
                         <span className={styles.bigLogoText}>NEXTGEAR</span>
                     </Link>

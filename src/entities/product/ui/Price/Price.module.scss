@@ -1,0 +1,43 @@
+.prices {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+
+  & .currentPrice {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--accent, #d6ff00);
+    line-height: 1;
+  }
+
+  & .oldPrice {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dim, #555555);
+    text-decoration: line-through;
+  }
+}
+
+.bigPrices {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+
+  & .currentPrice {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--accent, #d6ff00);
+    line-height: 1;
+  }
+
+  & .oldPrice {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dim, #555555);
+    text-decoration: line-through;
+  }
+}
