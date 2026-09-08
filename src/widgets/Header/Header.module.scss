@@ -93,3 +93,13 @@
     }
   }
 }
+
+.links {
+  display: flex;
+  gap: 15px;
+  margin-left: 20px;
+
+  & *:hover{
+    color: var(--accent);
+  }
+}
