@@ -7,7 +7,7 @@ import { InputHTMLAttributes, useId, useState } from "react";
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
     type: "email" | "password" | "text" | "file" | "number";
     label: string;
-    placeholder: string;
+    placeholder?: string;
     name: string;
     error?: string;
     isSearch?: boolean;

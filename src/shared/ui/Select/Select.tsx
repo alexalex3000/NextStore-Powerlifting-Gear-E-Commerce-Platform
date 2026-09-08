@@ -4,14 +4,14 @@ import styles from "./Select.module.scss"
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-interface Props {
-    active: string;
-    setActive: (active: string) => void;
-    options: string[];
+interface Props<T extends string> {
+    active: T;
+    setActive: (active: T) => void;
+    options: readonly T[] | T[];
     placeholder?: string;
 }
 
-export default function Select({ active, setActive, options, placeholder}: Props) {
+export default function Select<T extends string>({ active, setActive, options, placeholder }: Props<T>) {
     const [isOpen, setIsOpen] = useState(false);
     const selectRef = useRef<HTMLDivElement>(null);
 
@@ -26,7 +26,7 @@ export default function Select({ active, setActive, options, placeholder}: Props
         return () => window.removeEventListener('mousedown', handleClose);
     }, []);
 
-    const handleSelect = (option: string) => {
+    const handleSelect = (option: T) => {
         setActive(option);
         setIsOpen(false);
     };

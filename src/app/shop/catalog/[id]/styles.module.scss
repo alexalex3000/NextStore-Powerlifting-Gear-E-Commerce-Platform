@@ -1,0 +1,16 @@
+.wrapper {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  font-family: inherit;
+}
+
+@media (max-width: 768px) {
+  .wrapper{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

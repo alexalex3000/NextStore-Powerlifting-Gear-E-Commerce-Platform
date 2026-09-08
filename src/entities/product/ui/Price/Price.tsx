@@ -4,7 +4,7 @@ import {JSX} from "react";
 interface Props {
     size: "small" | "large";
     currentPrice: number;
-    oldPrice: number;
+    oldPrice: number | null;
 }
 
 export default function Price({size, currentPrice, oldPrice}: Props) {
