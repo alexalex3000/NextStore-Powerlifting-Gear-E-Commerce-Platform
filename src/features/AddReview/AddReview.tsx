@@ -10,7 +10,6 @@ interface Props {
     id: string;
 }
 
-// 1. Объявляем точную структуру состояния
 type ActionState = {
     success: boolean;
     error?: {

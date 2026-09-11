@@ -7,19 +7,19 @@ interface Props {
     oldPrice: number | null;
 }
 
-export default function Price({size, currentPrice, oldPrice}: Props) {
+export default function Price({size, currentPrice, oldPrice = 0}: Props) {
     return (
         <>
             {
                 size === "small" ? (
                     <div className={styles.prices}>
                         <span className={styles.currentPrice}>{currentPrice}$</span>
-                        <span className={styles.oldPrice}>{oldPrice}$</span>
+                        <span className={styles.oldPrice}>{oldPrice ? oldPrice > 0 ? `${oldPrice}$` : "" : ""}</span>
                     </div>
                 ) : (
                     <div className={styles.bigPrices}>
                         <span className={styles.currentPrice}>{currentPrice}$</span>
-                        <span className={styles.oldPrice}>{oldPrice}$</span>
+                        <span className={styles.oldPrice}>{oldPrice ? oldPrice > 0 ? `${oldPrice}$` : "" : ""}</span>
                     </div>
                 )
             }

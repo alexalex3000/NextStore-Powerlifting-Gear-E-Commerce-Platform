@@ -1,7 +1,6 @@
 import type {Metadata} from "next";
 import {Barlow_Condensed} from "next/font/google";
 import "./globals.css";
-import Header from "@/widgets/Header/Header";
 
 const barlowCondensed = Barlow_Condensed({
     subsets: ['latin'],
@@ -22,7 +21,7 @@ export default function RootLayout({children}: LayoutProps<"/">) {
             lang="en"
             className={`${barlowCondensed.variable} h-full antialiased`}
         >
-        <body className="">
+        <body suppressHydrationWarning className="">
             {children}
         </body>
         </html>

@@ -1,0 +1,110 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card, #0f0f0f);
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease;
+  border: 1px solid var(--border, #222222);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #2a2a2a;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+                  90deg,
+                  #1f1f1f 25%,
+                  #2a2a2a 50%,
+                  #1f1f1f 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+  border-radius: 2px;
+}
+
+.skeletonCard {
+  composes: card;
+  pointer-events: none;
+}
+
+.skeletonImage {
+  composes: imageWrapper skeleton;
+}
+
+.skeletonCategory {
+  composes: skeleton;
+  width: 35%;
+  height: 11px;
+  margin-bottom: 6px;
+}
+
+.skeletonTitle {
+  composes: skeleton;
+  width: 75%;
+  height: 22px;
+  margin-bottom: 8px;
+}
+
+.skeletonStars {
+  composes: skeleton;
+  width: 80px;
+  height: 14px;
+}
+
+.skeletonReviewCount {
+  composes: skeleton;
+  width: 30px;
+  height: 12px;
+}
+
+.skeletonPrice {
+  composes: skeleton;
+  width: 70px;
+  height: 24px;
+}
+
+.skeletonButton {
+  composes: skeleton;
+  width: 75px;
+  height: 36px;
+}

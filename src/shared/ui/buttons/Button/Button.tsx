@@ -4,10 +4,11 @@ interface Props {
     isPending: boolean;
     onClick: () => void;
     value: string;
+    className?: string;
 }
 
-export default function Button({onClick, isPending, value}: Props) {
+export default function Button({onClick, isPending, value, className}: Props) {
     return (
-        <button onClick={onClick} disabled={isPending} className={styles.button}>{value}</button>
+        <button onClick={onClick} disabled={isPending} className={`${styles.button} ${className}`}>{value}</button>
     )
 }

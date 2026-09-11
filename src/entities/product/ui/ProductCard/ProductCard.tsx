@@ -5,30 +5,35 @@ import Stars from "@/shared/ui/Stars/Stars";
 import AddToBasket from "@/shared/ui/AddToBasket/AddToBasket";
 import Bestseller from "@/entities/product/ui/demandType/Bestseller/Bestseller";
 import Price from "@/entities/product/ui/Price/Price";
+import {Product} from "@/entities/product/model/types";
 
-export default function ProductCard(){
+interface Props{
+    product: Product;
+}
+
+export default function ProductCard({product}: Props){
     return (
-        <Link href="/shop/catalog/1">
+        <Link href={`/shop/catalog/${product.id}`}>
             <article className={styles.card}>
                 <div className={styles.imageWrapper}>
                     <Bestseller/>
-                    <Image src={""} alt="hello"
+                    <Image src={product.imgUrl} alt={product.title}
                            fill
-                           sizes="(max-width: 768px) 100vw, 300px"
+                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                            style={{ objectFit: 'cover' }}/>
                 </div>
 
                 <div className={styles.content}>
-                    <span className={styles.category}>BELT</span>
-                    <h1 className={styles.title}>IPF BELT 13mm</h1>
+                    <span className={styles.category}>{product.type}</span>
+                    <h1 className={styles.title}>{product.title}</h1>
 
                     <div className={styles.rating}>
-                        <Stars count={3} />
-                        <span className={styles.reviewCount}>(321)</span>
+                        <Stars count={product.assessment} />
+                        <span className={styles.reviewCount}>({product.numOfFeedbacks})</span>
                     </div>
 
                     <footer className={styles.footer}>
-                        <Price size="small" currentPrice={123} oldPrice={123}/>
+                        <Price size="small" currentPrice={product.currentPrice} oldPrice={product.oldPrice ? product.oldPrice : null}/>
                         <AddToBasket/>
                     </footer>
                 </div>

@@ -41,7 +41,7 @@ export const productDrop = actionClient
             throw new Error("Cant upload this image");
         }
 
-        const blob = await put(file.name, file, { access: 'private' });
+        const blob = await put(file.name, file, { access: 'public' });
 
         if(!blob){
             throw new Error("Cant upload this image");

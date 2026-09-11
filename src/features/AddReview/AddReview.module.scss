@@ -1,24 +1,72 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form {
+  background-color: var(--card);
+  padding: 20px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #1a1a1a;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+
+  textarea {
+    width: 100%;
+    background-color: #0a0a0a;
+    border: 1px solid var(--border);
+    color: #ffffff;
+    padding: 16px;
+    border-radius: 4px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 215px;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    &::placeholder {
+      color: #666666;
+    }
+  }
+}
+
 .forLabels {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  & p,
+  label {
+    color: #555555;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
 
   &:has(.fieldError) {
     textarea {
       border-color: #ff4444;
     }
   }
-}
-
-.fieldError {
-  color: #ff4444;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  animation: fadeIn 0.2s ease-in-out;
 }
 
 .errorMessage {
@@ -35,13 +83,15 @@
   animation: fadeIn 0.2s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.fieldError {
+  color: #ff4444;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: fadeIn 0.2s ease-in-out;
 }

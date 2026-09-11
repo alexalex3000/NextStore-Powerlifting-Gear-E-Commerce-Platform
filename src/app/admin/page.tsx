@@ -1,8 +1,6 @@
 import getUserByCookies from "@/shared/lib/getUserByCookies";
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
-import AdminForm from "@/features/AdminForm/AdminForm";
-import AdminHeader from "@/widgets/AdminHeader/AdminHeader";
 
 export default async function AdminPage(){
     const cookiesConfig = await cookies()
