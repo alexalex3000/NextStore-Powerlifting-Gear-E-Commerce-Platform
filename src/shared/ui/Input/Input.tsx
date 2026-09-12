@@ -12,9 +12,10 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
     error?: string;
     isSearch?: boolean;
     handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    defaultValue?: string;
 }
 
-export default function Input({handleChange, type, label, placeholder,error, id, name, isSearch,  ...rest }: Props) {
+export default function Input({handleChange, type, label, placeholder,error, id, name, isSearch, defaultValue,  ...rest}: Props) {
     const defaultId = useId();
     const inputId = id || defaultId;
 
@@ -41,6 +42,7 @@ export default function Input({handleChange, type, label, placeholder,error, id,
                     type={currentType}
                     name={name}
                     placeholder={placeholder}
+                    defaultValue={defaultValue}
                     onFocus={() => setFocus(true)}
                     onBlur={() => setFocus(false)}
                     {...rest}

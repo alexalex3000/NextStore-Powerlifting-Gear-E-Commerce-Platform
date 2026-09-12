@@ -1,11 +1,10 @@
 import styles from "./Sidebar.module.scss";
 import NavBlock from "@/widgets/Sidebar/ui/NavBlock/NavBlock";
 import {Suspense} from "react";
-import StringSkeleton from "@/shared/ui/StringSkeleton/StringSkeleton";
-import getUserByCookies from "@/shared/lib/getUserByCookies";
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
-import NoLogo from "@/entities/user/ui/NoLogo/NoLogo";
+import UserProfile from "@/features/UserProfile/UserProfile";
+import UserProfileSkeleton from "@/shared/ui/UserProfileSkeleton/UserProfileSkeleton";
 
 
 export default async function Sidebar() {
@@ -16,20 +15,11 @@ export default async function Sidebar() {
         redirect("/shop/catalog")
     }
 
-    const userData = await getUserByCookies(token)
-
-    if(!userData){
-        redirect("/shop/catalog")
-    }
-
     return (
         <aside className={styles.sidebar}>
-            <div className={styles.userInfo}>
-                <NoLogo title={`${userData.user.firstName}${userData.user.lastName}`}/>
-
-                <Suspense fallback={<StringSkeleton/>}><h2 className={styles.userName}>{userData.user.firstName} {userData.user.lastName}</h2></Suspense>
-                <Suspense fallback={<StringSkeleton/>}></Suspense><p className={styles.userEmail}>{userData.user.email}</p>
-            </div>
+            <Suspense fallback={<UserProfileSkeleton/>}>
+                <UserProfile token={token} />
+            </Suspense>
             <NavBlock/>
         </aside>
     );

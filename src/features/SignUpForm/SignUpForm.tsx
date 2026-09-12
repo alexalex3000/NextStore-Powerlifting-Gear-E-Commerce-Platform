@@ -3,16 +3,17 @@
 import Link from "next/link";
 import Input from "@/shared/ui/Input/Input";
 import SubmitButton from "@/shared/ui/buttons/SubmitButton/SubmitButton";
-import styles from "../LoginForm/LoginForm.module.scss"; // Проверьте правильность пути
+import styles from "../LoginForm/LoginForm.module.scss";
 import { useActionState } from "react";
 import { Errors } from "@/features/LoginForm/LoginForm";
 import { registerDrop } from "@/entities/user/api/register.action";
 import FormError from "@/shared/ui/FormError/FormError";
+import {redirect} from "next/navigation";
 
 interface RegErrors extends Errors {
     name?: string;
     surname?: string;
-    password_confirmation?: string; // Добавили поле для подтверждения пароля
+    password_confirmation?: string;
 }
 
 export default function SignUpForm() {
@@ -58,6 +59,10 @@ export default function SignUpForm() {
         },
         { success: false }
     );
+
+    if(state.success) {
+        redirect("/shop/catalog")
+    }
 
     return (
         <form action={formAction} className={styles.form}>

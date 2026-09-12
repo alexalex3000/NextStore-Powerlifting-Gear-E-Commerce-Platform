@@ -7,6 +7,7 @@ import styles from "./LoginForm.module.scss";
 import { useActionState } from "react";
 import { loginDrop } from "@/entities/user/api/login.action";
 import FormError from "@/shared/ui/FormError/FormError";
+import {redirect} from "next/navigation";
 
 export interface Errors {
     email?: string;
@@ -47,6 +48,10 @@ export default function LoginForm() {
         },
         { success: false }
     );
+
+    if(state.success) {
+        redirect("/shop/catalog")
+    }
 
     return (
         <form action={formAction} className={styles.form}>
