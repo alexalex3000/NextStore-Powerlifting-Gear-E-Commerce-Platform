@@ -10,6 +10,7 @@ import {
     LogOut,
     ChevronRight,
 } from "lucide-react";
+import {logOutAction} from "@/entities/user/api/logOut.action";
 
 export default function NavBlock() {
     const pathname = usePathname();
@@ -20,8 +21,8 @@ export default function NavBlock() {
         { label: "PAYMENT", href: "/shop/profile/payment", icon: CreditCard },
     ];
 
-    const handleSignOut = () => {
-        console.log("Sign out triggered");
+    const handleSignOut = async () => {
+        logOutAction();
     };
 
     return (
