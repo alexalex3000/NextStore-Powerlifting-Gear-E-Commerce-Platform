@@ -15,6 +15,13 @@
       "when": 1789298087419,
       "tag": "0001_blue_impossible_man",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789305713165,
+      "tag": "0002_unusual_falcon",
+      "breakpoints": true
     }
   ]
 }

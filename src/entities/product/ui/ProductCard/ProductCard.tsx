@@ -5,10 +5,21 @@ import Stars from "@/shared/ui/Stars/Stars";
 import AddToBasket from "@/shared/ui/AddToBasket/AddToBasket";
 import Bestseller from "@/entities/product/ui/demandType/Bestseller/Bestseller";
 import Price from "@/entities/product/ui/Price/Price";
-import {Product} from "@/entities/product/model/types";
+
+interface ProductId {
+    id: string;
+    type: string;
+    title: string;
+    currentPrice: number;
+    oldPrice:  number | null;
+    count: number;
+    assessment: number;
+    numOfFeedbacks: number;
+    imgUrl: string;
+}
 
 interface Props{
-    product: Product;
+    product: ProductId;
 }
 
 export default function ProductCard({product}: Props){
@@ -34,7 +45,7 @@ export default function ProductCard({product}: Props){
 
                     <footer className={styles.footer}>
                         <Price size="small" currentPrice={product.currentPrice} oldPrice={product.oldPrice ? product.oldPrice : null}/>
-                        <AddToBasket/>
+                        <AddToBasket id={product.id} />
                     </footer>
                 </div>
             </article>

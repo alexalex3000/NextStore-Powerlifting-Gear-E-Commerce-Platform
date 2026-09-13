@@ -28,8 +28,8 @@ export const basket = pgTable("basket", {
     userId: uuid("user_id")
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),
-    totalAmount: integer("total_amount").notNull(),
-    totalPrice: integer("total_price").notNull(),
+    totalAmount: integer("total_amount").default(0).notNull(),
+    totalPrice: integer("total_price").default(0).notNull(),
 });
 
 export const basketItems = pgTable("basket_items", {
