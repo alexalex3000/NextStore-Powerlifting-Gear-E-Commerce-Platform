@@ -9,3 +9,15 @@ export interface Product {
     numOfFeedbacks: number;
     imgUrl: string;
 }
+
+export interface ProductId {
+    id: string;
+    type: string;
+    title: string;
+    currentPrice: number;
+    oldPrice:  number | null;
+    count: number;
+    assessment: number;
+    numOfFeedbacks: number;
+    imgUrl: string;
+}

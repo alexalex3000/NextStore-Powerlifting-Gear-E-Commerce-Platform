@@ -9,14 +9,17 @@ import { db } from "@/shared/db/db";
 import { eq, and } from "drizzle-orm";
 import { basket, basketItems } from "@/entities/user/model/schema";
 
+const sizes = z.enum(["XS", "S", "M", "L", "XL", "XXL", ""]);
+
 const addToBasketSchema = z.object({
     id: z.string().nonempty(),
+    size: sizes,
 });
 
 export const addToBasketDrop = actionClient
     .schema(addToBasketSchema)
     .action(async ({ parsedInput }) => {
-        const { id: productId } = parsedInput;
+        const { id: productId, size } = parsedInput;
 
         const cookiesClient = await cookies();
         const token = cookiesClient.get("session_token")?.value;
@@ -37,8 +40,11 @@ export const addToBasketDrop = actionClient
                 .insert(basket)
                 .values({ userId })
                 .returning();
+
             basketData = newBasket;
         }
+
+        const targetSize = size === "" ? "XS" : size;
 
         const [existingItem] = await db
             .select()
@@ -46,14 +52,17 @@ export const addToBasketDrop = actionClient
             .where(
                 and(
                     eq(basketItems.basketId, basketData.id),
-                    eq(basketItems.productId, productId)
+                    eq(basketItems.productId, productId),
+                    eq(basketItems.sizes, targetSize)
                 )
             );
 
         if (existingItem) {
             const [updatedItem] = await db
                 .update(basketItems)
-                .set({ count: existingItem.count + 1 })
+                .set({
+                    count: existingItem.count + 1,
+                })
                 .where(eq(basketItems.id, existingItem.id))
                 .returning();
 
@@ -66,6 +75,7 @@ export const addToBasketDrop = actionClient
                 basketId: basketData.id,
                 productId,
                 count: 1,
+                sizes: targetSize,
             })
             .returning();
 

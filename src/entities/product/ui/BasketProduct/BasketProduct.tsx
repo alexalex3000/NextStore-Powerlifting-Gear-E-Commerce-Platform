@@ -1,29 +1,81 @@
+"use client";
+
+import { useTransition } from "react";
 import SectionPart from "@/shared/ui/SectionPart/SectionPart";
 import styles from "./BasketProduct.module.scss";
+import { BasketInfo } from "@/features/BasketList/BasketList";
+import Image from "next/image";
+import { deleteFromBasketDrop } from "@/entities/product/api/deleteFromBasket.action";
+import { changeCountDrop } from "@/entities/product/api/changeCount.action";
 
-export default function BasketProduct() {
+interface Props {
+    basketInfo: BasketInfo;
+}
+
+export default function BasketProduct({ basketInfo }: Props) {
+    const [isPending, startTransition] = useTransition();
+
+    if (!basketInfo || !basketInfo.product) {
+        return null;
+    }
+
+    const handleDelete = () => {
+        startTransition(async () => {
+            await deleteFromBasketDrop({ id: basketInfo.id });
+        });
+    };
+
+    const handleCountChange = (type: "inc" | "dec") => {
+        startTransition(async () => {
+            await changeCountDrop({ id: basketInfo.id, type });
+        });
+    };
+
     return (
         <SectionPart>
-            <div className={styles.wrapper}>
+            <div className={`${styles.wrapper} ${isPending ? styles.pending : ""}`}>
                 <div>
                     <div>
-                        <img src="/belt-preview.jpg" alt="IPF BELT" />
+                        <Image
+                            src={basketInfo.product.imgUrl}
+                            alt={basketInfo.product.title}
+                            fill
+                            sizes="90px"
+                            style={{ objectFit: "cover" }}
+                        />
                     </div>
                     <div>
-                        <p>BELTS</p>
-                        <h2>IPF LEVER BELT 13MM</h2>
+                        <p>{basketInfo.product.type}</p>
+                        <h2>{basketInfo.product.title}</h2>
                         <p>
-                            SIZE: <span>M</span>
+                            SIZE: <span>{basketInfo.sizes || "XS"}</span>
                         </p>
                         <div>
-                            <button type="button">−</button>
-                            <div>1</div>
-                            <button type="button">+</button>
+                            <button
+                                type="button"
+                                disabled={isPending}
+                                onClick={() => handleCountChange("dec")}
+                            >
+                                −
+                            </button>
+                            <div>{basketInfo.count}</div>
+                            <button
+                                type="button"
+                                disabled={isPending}
+                                onClick={() => handleCountChange("inc")}
+                            >
+                                +
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <button type="button" aria-label="Delete item">
+                    <button
+                        type="button"
+                        aria-label="Delete item"
+                        disabled={isPending}
+                        onClick={handleDelete}
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -38,7 +90,7 @@ export default function BasketProduct() {
                             />
                         </svg>
                     </button>
-                    <h2>$189</h2>
+                    <h2>${basketInfo.product.currentPrice * basketInfo.count}</h2>
                 </div>
             </div>
         </SectionPart>

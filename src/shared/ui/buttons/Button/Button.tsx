@@ -7,10 +7,11 @@ interface Props {
     onClick: () => void;
     value: string;
     className?: string;
+    type?: "button" | "submit";
 }
 
-export default function Button({onClick, isPending, value, className}: Props) {
+export default function Button({onClick, type, isPending, value, className}: Props) {
     return (
-        <button onClick={onClick} disabled={isPending} className={`${styles.button} ${className}`}>{value}</button>
+        <button type={type} onClick={onClick} disabled={isPending} className={`${styles.button} ${className}`}>{value}</button>
     )
 }

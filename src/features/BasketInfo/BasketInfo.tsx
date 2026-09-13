@@ -3,29 +3,59 @@ import SubmitButton from "@/shared/ui/buttons/SubmitButton/SubmitButton";
 import styles from "./BasketInfo.module.scss";
 import Section from "@/shared/ui/Section/Section";
 
-export default function BasketInfo() {
+export interface BasketItemProduct {
+    id: string;
+    type: string;
+    title: string;
+    currentPrice: number;
+    oldPrice: number | null;
+    count: number;
+    assessment: number;
+    numOfFeedbacks: number;
+    imgUrl: string;
+}
+
+export interface BasketInfo {
+    id: string;
+    count: number;
+    productId: string | null;
+    basketId: string;
+    product: BasketItemProduct | null;
+}
+
+interface Props {
+    basketProduct: BasketInfo[];
+}
+
+export default function BasketInfo({ basketProduct }: Props) {
+    const subtotal = basketProduct.reduce((sum, item) => {
+        const price = item.product?.currentPrice ?? 0;
+        return sum + price * item.count;
+    }, 0);
+
     return (
         <Section>
             <SectionPart>
                 <div className={styles.summaryPart}>
                     <h2>Order Summary</h2>
                     <div>
-                        <p>
-                            IPF Lever Belt 13mm <span>$189</span>
-                        </p>
-                        <p>
-                            Chalk Block 2lb <span>×2</span> <span>$24</span>
-                        </p>
-                        <p>
-                            Figure-8 Straps Pro <span>$34</span>
-                        </p>
+                        {basketProduct.map((item) => {
+                            const price = item.product?.currentPrice ?? 0;
+                            const itemTotal = price * item.count;
+
+                            return (
+                                <p key={item.id}>
+                                    {item.product?.title} {item.count > 1 && <span>×{item.count}</span>} <span>${itemTotal}</span>
+                                </p>
+                            );
+                        })}
                     </div>
                     <div>
                         <p>
-                            Subtotal <span>$247</span>
+                            Subtotal <span>${subtotal}</span>
                         </p>
                         <p>
-                            Shipping <span className={styles.free}>FREE</span>
+                            Shipping <span className={styles.free}>{subtotal > 500 ? "FREE" : 0.05*subtotal}</span>
                         </p>
                     </div>
                 </div>
@@ -35,7 +65,7 @@ export default function BasketInfo() {
                 <div className={styles.totalPart}>
                     <div>
                         <h1>TOTAL</h1>
-                        <span>$247</span>
+                        <span>${subtotal}</span>
                     </div>
                     <SubmitButton goal={"submit"} isPending={false} />
                     <p className={styles.securedNote}>SSL SECURED · IRONHIVE STORE</p>

@@ -45,7 +45,7 @@ export default function ProductCard({product}: Props){
 
                     <footer className={styles.footer}>
                         <Price size="small" currentPrice={product.currentPrice} oldPrice={product.oldPrice ? product.oldPrice : null}/>
-                        <AddToBasket id={product.id} />
+                        <AddToBasket/>
                     </footer>
                 </div>
             </article>

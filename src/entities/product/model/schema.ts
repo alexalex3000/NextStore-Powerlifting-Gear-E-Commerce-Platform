@@ -1,5 +1,6 @@
-import { integer, pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
+import { integer, pgEnum, pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 import { users } from "../../user/model/schema";
+
 
 export const product = pgTable("product", {
     id: uuid("id").defaultRandom().primaryKey(),

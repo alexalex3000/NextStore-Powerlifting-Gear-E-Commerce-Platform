@@ -3,6 +3,9 @@ import {product} from "@/entities/product/model/schema";
 
 export const roleEnum = pgEnum("role", ["user", "admin"]);
 
+export const sizesEnum = pgEnum("sizes", ["XS", "S", "M", "L", "XL", "XXL"]);
+
+
 export const users = pgTable("users", {
     id: uuid("id").defaultRandom().primaryKey(),
     role: roleEnum('role').default('user').notNull(),
@@ -28,9 +31,7 @@ export const basket = pgTable("basket", {
     userId: uuid("user_id")
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),
-    totalAmount: integer("total_amount").default(0).notNull(),
-    totalPrice: integer("total_price").default(0).notNull(),
-});
+   });
 
 export const basketItems = pgTable("basket_items", {
     id: uuid("id").defaultRandom().primaryKey(),
@@ -39,6 +40,7 @@ export const basketItems = pgTable("basket_items", {
         .references(() => basket.id, { onDelete: "cascade" }),
     productId: uuid("product_id")
         .references(() => product.id, { onDelete: "set null" }),
+    sizes: sizesEnum("size"),
     count: integer("count").notNull(),
 });
 

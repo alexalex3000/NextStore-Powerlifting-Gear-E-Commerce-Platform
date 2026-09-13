@@ -11,6 +11,8 @@ export const orderStatusEnum = pgEnum("order_status", [
     "cancelled",
 ]);
 
+export const sizesEnum = pgEnum("sizes", ["XS", "S", "M", "L", "XL", "XXL"]);
+
 export const orders = pgTable("orders", {
     id: uuid("id").defaultRandom().primaryKey(),
     userId: uuid("user_id")
@@ -31,6 +33,7 @@ export const orderItems = pgTable("order_items", {
         .references(() => orders.id, { onDelete: "cascade" }),
     productId: uuid("product_id")
         .references(() => product.id, { onDelete: "set null" }),
+    size: sizesEnum("size"),
     price: integer("price").notNull(),
     title: varchar("title", { length: 255 }).notNull(),
     count: integer("count").notNull(),
