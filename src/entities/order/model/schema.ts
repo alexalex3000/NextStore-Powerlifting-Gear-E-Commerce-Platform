@@ -33,5 +33,5 @@ export const orderItems = pgTable("order_items", {
         .references(() => product.id, { onDelete: "set null" }),
     price: integer("price").notNull(),
     title: varchar("title", { length: 255 }).notNull(),
-    count: integer("quantity").notNull(),
+    count: integer("count").notNull(),
 });
