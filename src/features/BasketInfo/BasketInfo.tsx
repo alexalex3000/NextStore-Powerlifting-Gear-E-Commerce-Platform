@@ -1,7 +1,12 @@
+"use client"
+
 import SectionPart from "@/shared/ui/SectionPart/SectionPart";
-import SubmitButton from "@/shared/ui/buttons/SubmitButton/SubmitButton";
 import styles from "./BasketInfo.module.scss";
 import Section from "@/shared/ui/Section/Section";
+import Button from "@/shared/ui/buttons/Button/Button";
+import {useState} from "react";
+import OrderModal from "@/widgets/OrderModal/OrderModal";
+import BasketProductInfo from "@/features/BasketInfo/ui/BasketProductInfo";
 
 export interface BasketItemProduct {
     id: string;
@@ -15,7 +20,7 @@ export interface BasketItemProduct {
     imgUrl: string;
 }
 
-export interface BasketInfo {
+export interface BasketInfoType {
     id: string;
     count: number;
     productId: string | null;
@@ -24,10 +29,12 @@ export interface BasketInfo {
 }
 
 interface Props {
-    basketProduct: BasketInfo[];
+    basketProduct: BasketInfoType[];
 }
 
 export default function BasketInfo({ basketProduct }: Props) {
+    const [isOpen, setIsOpen] = useState(true);
+
     const subtotal = basketProduct.reduce((sum, item) => {
         const price = item.product?.currentPrice ?? 0;
         return sum + price * item.count;
@@ -36,43 +43,24 @@ export default function BasketInfo({ basketProduct }: Props) {
     const deliveryPrice = Number((0.05*subtotal).toFixed(2));
 
     return (
-        <Section>
-            <SectionPart>
-                <div className={styles.summaryPart}>
-                    <h2>Order Summary</h2>
-                    <div>
-                        {basketProduct.map((item) => {
-                            const price = item.product?.currentPrice ?? 0;
-                            const itemTotal = price * item.count;
+        <>
+            <Section>
+                <SectionPart>
+                    <BasketProductInfo subtotal={subtotal} deliveryPrice={deliveryPrice} basketProduct={basketProduct}/>
+                </SectionPart>
 
-                            return (
-                                <p key={item.id}>
-                                    {item.product?.title} {item.count > 1 && <span>×{item.count}</span>} <span>${itemTotal}</span>
-                                </p>
-                            );
-                        })}
+                <SectionPart>
+                    <div className={styles.totalPart}>
+                        <div>
+                            <h1>TOTAL</h1>
+                            <span>${subtotal > 500 ? subtotal : subtotal + deliveryPrice}</span>
+                        </div>
+                        <Button onClick={() => {setIsOpen(true)}} isPending={false} value={false ? "ORDER..." : "ORDER"}/>
+                        <p className={styles.securedNote}>SSL SECURED · IRONHIVE STORE</p>
                     </div>
-                    <div>
-                        <p>
-                            Subtotal <span>${subtotal}</span>
-                        </p>
-                        <p>
-                            Shipping <span className={styles.free}>{subtotal > 500 ? "FREE" : deliveryPrice}</span>
-                        </p>
-                    </div>
-                </div>
-            </SectionPart>
-
-            <SectionPart>
-                <div className={styles.totalPart}>
-                    <div>
-                        <h1>TOTAL</h1>
-                        <span>${subtotal > 500 ? subtotal : subtotal + deliveryPrice}</span>
-                    </div>
-                    <SubmitButton goal={"submit"} isPending={false} />
-                    <p className={styles.securedNote}>SSL SECURED · IRONHIVE STORE</p>
-                </div>
-            </SectionPart>
-        </Section>
+                </SectionPart>
+            </Section>
+            {isOpen && <OrderModal subtotal={subtotal} deliveryPrice={deliveryPrice} basketProduct={basketProduct} setIsOpen={setIsOpen}/>}
+        </>
     );
 }
