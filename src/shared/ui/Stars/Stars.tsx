@@ -1,3 +1,5 @@
+"use client"
+
 import {Star} from "lucide-react";
 import styles from "./Stars.module.scss"
 interface Props{

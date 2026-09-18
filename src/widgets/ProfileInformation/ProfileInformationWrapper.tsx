@@ -28,10 +28,10 @@ export default function ProfileInformationWrapper({ userData }: Props) {
 
     const [state, formAction, isPending] = useActionState<ActionState, FormData>(
         async (previousState, formData) => {
-            const firstName = formData.get("firstName") as string;
-            const lastName = formData.get("secondName") as string;
-            const email = formData.get("emailAddress") as string;
-            const phoneNumber = formData.get("phoneNumber") as string;
+            const firstName = (formData.get("firstName")?.toString() || "").replace(/\s+/g, "");
+            const lastName = (formData.get("secondName")?.toString() || "").replace(/\s+/g, "");
+            const email = (formData.get("emailAddress")?.toString() || "").replace(/\s+/g, "");
+            const phoneNumber = (formData.get("phoneNumber")?.toString() || "").replace(/\s+/g, "");
 
             const result = await editDrop({
                 firstName,

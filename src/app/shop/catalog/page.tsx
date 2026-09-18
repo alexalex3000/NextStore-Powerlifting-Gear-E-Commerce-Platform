@@ -1,9 +1,9 @@
-import CatalogSidebar from "@/widgets/CatalogSidebar/CatalogSidebar";
-import ProductGrid from "@/widgets/ProductGrid/ProductGrid";
+import ProductGridWrapper from "@/widgets/ProductGrid/ProductGridWrapper";
 import {Suspense} from "react";
 import GridLoader from "@/entities/product/ui/loaders/GridLoader/GridLoader";
 import {db} from "@/shared/db/db";
 import {product} from "@/entities/product/model/schema";
+import CatalogSidebarWrapper from "@/widgets/CatalogSidebar/CatalogSidebarWrapper";
 
 export async function getProducts() {
     try {
@@ -21,9 +21,9 @@ export async function getProducts() {
 export default function CatalogPage(){
     return (
         <div className="pt-4 flex gap-8 flex-col md:flex-row">
-            <CatalogSidebar/>
+            <CatalogSidebarWrapper/>
             <Suspense fallback={<GridLoader/>}>
-                <ProductGrid/>
+                <ProductGridWrapper/>
             </Suspense>
         </div>
     )

@@ -18,7 +18,6 @@ export default function BasketProduct({ basketInfo }: Props) {
     if (!basketInfo || !basketInfo.product) {
         return null;
     }
-
     const handleDelete = () => {
         startTransition(async () => {
             await deleteFromBasketDrop({ id: basketInfo.id });

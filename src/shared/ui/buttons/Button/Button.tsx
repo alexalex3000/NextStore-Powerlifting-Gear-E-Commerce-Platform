@@ -4,7 +4,7 @@ import styles from "../buttons.module.scss"
 
 interface Props {
     isPending: boolean;
-    onClick: () => void;
+    onClick?: () => void;
     value: string;
     className?: string;
     type?: "button" | "submit";

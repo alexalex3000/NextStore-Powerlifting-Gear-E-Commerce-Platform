@@ -33,6 +33,8 @@ export default function BasketInfo({ basketProduct }: Props) {
         return sum + price * item.count;
     }, 0);
 
+    const deliveryPrice = Number((0.05*subtotal).toFixed(2));
+
     return (
         <Section>
             <SectionPart>
@@ -55,7 +57,7 @@ export default function BasketInfo({ basketProduct }: Props) {
                             Subtotal <span>${subtotal}</span>
                         </p>
                         <p>
-                            Shipping <span className={styles.free}>{subtotal > 500 ? "FREE" : 0.05*subtotal}</span>
+                            Shipping <span className={styles.free}>{subtotal > 500 ? "FREE" : deliveryPrice}</span>
                         </p>
                     </div>
                 </div>
@@ -65,7 +67,7 @@ export default function BasketInfo({ basketProduct }: Props) {
                 <div className={styles.totalPart}>
                     <div>
                         <h1>TOTAL</h1>
-                        <span>${subtotal}</span>
+                        <span>${subtotal > 500 ? subtotal : subtotal + deliveryPrice}</span>
                     </div>
                     <SubmitButton goal={"submit"} isPending={false} />
                     <p className={styles.securedNote}>SSL SECURED · IRONHIVE STORE</p>

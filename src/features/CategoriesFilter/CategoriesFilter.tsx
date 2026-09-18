@@ -4,18 +4,17 @@ import styles from "./CategoriesFilter.module.scss"
 import {usePathname, useSearchParams} from "next/navigation";
 import {trimWord} from "@/shared/utils/trimWord";
 import FilterBlock from "@/shared/ui/FIlterBlock/FilterBlock";
-import Stars from "@/shared/ui/Stars/Stars";
 
-export default function CategoriesFilter() {
+interface Props{
+    categories: {type: string, num: number}[];
+}
+
+export default function CategoriesFilter({categories}: Props) {
     const queryParams = useSearchParams()
     const path = usePathname()
     const activeCategory = queryParams.get("category") ?? ""
 
-    const categories = [
-        {title: "BELTS", num: 31},
-        {title: "KNEESLEEVEES", num: 32},
-        {title: "T-SHIRTS", num: 33},
-    ]
+
 
     const handleClick = (item: string) => {
         const trimmedItem = trimWord(item).toLowerCase();
@@ -40,13 +39,13 @@ export default function CategoriesFilter() {
                 <h2 className={styles.sectionTitle}>Categories</h2>
                 <div className={styles.list}>
                     {categories.map((item, index) => {
-                        const isSelected = activeCategory === item.title.toLowerCase();
+                        const isSelected = activeCategory === item.type.toLowerCase();
 
                         return (
-                            <FilterBlock key={index} isActive={isSelected} onClick={() => handleClick(item.title)}>
+                            <FilterBlock key={index} isActive={isSelected} onClick={() => handleClick(item.type)}>
                                 <div className={styles.innerFilter}>
-                                    <p>{item.title}</p>
-                                    <p>{item.num}</p>
+                                    <p>{item.type}</p>
+                                    <p>{item.num == 0 ? "" : item.num}</p>
                                 </div>
                             </FilterBlock>
                         );

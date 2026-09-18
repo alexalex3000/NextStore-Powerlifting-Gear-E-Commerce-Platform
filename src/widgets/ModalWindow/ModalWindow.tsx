@@ -7,13 +7,12 @@ import {useRouter} from "next/navigation";
 import {Product} from "@/entities/product/model/types";
 import Image from "next/image";
 import Bestseller from "@/entities/product/ui/demandType/Bestseller/Bestseller";
+import Button from "@/shared/ui/buttons/Button/Button";
+import SelectSize from "@/entities/product/ui/SelectSize/SelectSize";
 
 export default function ModalWindow({product}: {product: Product}) {
     const router = useRouter();
     const [selectedSize, setSelectedSize] = useState<string>("");
-    const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
-    const selectRef = useRef<HTMLDivElement>(null);
-
     const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
     const handleClose = () => {
@@ -25,16 +24,6 @@ export default function ModalWindow({product}: {product: Product}) {
             handleClose();
         }
     };
-
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
-                setIsSelectOpen(false);
-            }
-        };
-        window.addEventListener("click", handleClickOutside);
-        return () => window.removeEventListener("click", handleClickOutside);
-    }, []);
 
     return (
         <div
@@ -93,25 +82,9 @@ export default function ModalWindow({product}: {product: Product}) {
                             <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent,#d6ff00)] animate-pulse" />
                             {product.count > 0 ? "In Stock" : "Not in Stock"}
                         </div>
-
-                        <div className="mb-6">
-                            <label className="block text-xs uppercase tracking-wider text-[var(--text-dim,#888)] font-bold mb-2 font-['Barlow_Condensed']">
-                                SIZE
-                            </label>
-
-                            <Select active={selectedSize} setActive={setSelectedSize} options={sizes} placeholder={"SELECT SIZE"}/>
-                        </div>
                     </div>
 
-                    <button
-                        className={`w-full py-3.5 px-6 font-extrabold text-sm font-['Barlow_Condensed'] uppercase tracking-wider transition-all flex items-center justify-center gap-2 border ${
-                            selectedSize
-                                ? "bg-[var(--accent,#d6ff00)] text-black border-[var(--accent,#d6ff00)] hover:bg-[#c4ea00] cursor-pointer"
-                                : "bg-[var(--card-2,#181818)] text-zinc-500 border-[#282828] cursor-not-allowed"
-                        }`}
-                    >
-                        {selectedSize ? "Add to basket" : "Select a size"}
-                    </button>
+                    <SelectSize id={product.id!}/>
                 </div>
             </div>
         </div>

@@ -1,3 +1,5 @@
+"use client"
+
 import styles from "./Price.module.scss"
 import {JSX} from "react";
 

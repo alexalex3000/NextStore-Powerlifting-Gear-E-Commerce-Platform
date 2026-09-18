@@ -8,6 +8,7 @@ import { eq } from "drizzle-orm";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import getUserByCookies from "@/shared/lib/getUserByCookies";
+import {revalidatePath} from "next/cache";
 
 const changeCountSchema = z.object({
     id: z.string().nonempty(),
@@ -54,5 +55,6 @@ export const changeCountDrop = actionClient
             }
         }
 
+        revalidatePath("/shop/basket")
         return { success: true };
     });

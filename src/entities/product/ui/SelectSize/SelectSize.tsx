@@ -41,8 +41,7 @@ export default function SelectSize({id}: Props){
             <Button className={active ? "!bg-[var(--accent,#d6ff00)] !text-black !border-[var(--accent,#d6ff00)] !hover:bg-[#c4ea00] cursor-pointer" : "!bg-[var(--card-2,#181818)] !text-zinc-500 !border-[#282828] cursor-not-allowed"}
                     isPending={false}
                     value="ADD TO BASKET"
-                    type={"submit"}
-                    onClick={() => console.log("add to basket")}/>
+                    type={"submit"}/>
         </form>
     )
 }

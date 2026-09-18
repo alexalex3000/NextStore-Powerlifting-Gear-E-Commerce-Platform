@@ -6,7 +6,7 @@ import AddToBasket from "@/shared/ui/AddToBasket/AddToBasket";
 import Bestseller from "@/entities/product/ui/demandType/Bestseller/Bestseller";
 import Price from "@/entities/product/ui/Price/Price";
 
-interface ProductId {
+export interface ProductId {
     id: string;
     type: string;
     title: string;
