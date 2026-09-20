@@ -34,9 +34,6 @@ export default function SelectSize({id}: Props){
 
     }, {success: false});
 
-
-    console.log(state)
-
     return (
         <form className={styles.select} action={formAction}>
             <Select active={active} setActive={setActive} options={tempSizes} placeholder="SELECT SIZE"/>

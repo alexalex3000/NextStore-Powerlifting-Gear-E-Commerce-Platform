@@ -56,8 +56,6 @@ export default function OrderModal({ userPhone, basketProduct, deliveryPrice, su
             })
         }
 
-        console.log(data)
-
         if(data.serverError){
             return {
                 success: false,

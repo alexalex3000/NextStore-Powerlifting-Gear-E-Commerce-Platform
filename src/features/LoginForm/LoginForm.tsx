@@ -49,6 +49,7 @@ export default function LoginForm() {
         { success: false }
     );
 
+
     if(state.success) {
         redirect("/shop/catalog")
     }

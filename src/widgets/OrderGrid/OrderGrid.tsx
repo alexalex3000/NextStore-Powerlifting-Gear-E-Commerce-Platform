@@ -30,8 +30,6 @@ export default async function OrderGrid() {
         }
     })
 
-    console.log(orders)
-
     if(!orders?.user?.orders) {
         redirect("/login")
     }
