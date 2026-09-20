@@ -8,8 +8,8 @@
     gap: 1rem;
     padding: 0.5rem 0;
 
-
     > div:nth-child(1) {
+      position: relative;
       width: 56px;
       height: 56px;
       flex-shrink: 0;
@@ -71,6 +71,6 @@
   }
 }
 
-.price{
+.price {
   letter-spacing: 0.05em;
 }

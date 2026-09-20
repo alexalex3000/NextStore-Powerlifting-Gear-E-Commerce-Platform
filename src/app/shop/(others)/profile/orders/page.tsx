@@ -1,11 +1,7 @@
-import OrderBlock from "@/entities/order/ui/OrderBlock/OrderBlock";
+import OrderGrid from "@/widgets/OrderGrid/OrderGrid";
 
 export default function OrdersPage() {
     return (
-        <div className="flex flex-col gap-4">
-            <OrderBlock/>
-            <OrderBlock/>
-            <OrderBlock/>
-        </div>
+        <OrderGrid/>
     )
 }

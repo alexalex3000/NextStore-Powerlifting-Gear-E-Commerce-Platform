@@ -1,18 +1,29 @@
 import styles from "./OrderProduct.module.scss";
+import {OrderItems} from "@/entities/order/ui/OrderBlock/OrderBlock";
+import Image from "next/image";
+import {redirect} from "next/navigation";
 
-export default function OrderProduct() {
+interface Props {
+    product: OrderItems;
+}
+
+export default function OrderProduct({product}: Props) {
+    if (!product.product) {
+        redirect("/profile");
+    }
+
     return (
         <div className={styles.orderProduct}>
             <div>
                 <div>
-                    <img src="/belt-placeholder.jpg" alt="IPF LEVER BELT 13MM" />
+                    <Image src={product.product.imgUrl} alt={product.product.title} fill sizes="90px" style={{ objectFit: "cover" }}/>
                 </div>
                 <div>
-                    <h1>IPF LEVER BELT 13MM</h1>
-                    <p>Qty: 1</p>
+                    <h1>{product.product.title}</h1>
+                    <p>Qty: {product.count}</p>
                 </div>
                 <div className={styles.price}>
-                    $189
+                    ${product.product.currentPrice}
                 </div>
             </div>
         </div>

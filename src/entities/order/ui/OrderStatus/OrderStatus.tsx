@@ -1,8 +1,10 @@
 import styles from "./OrderStatus.module.scss";
 
+export type Status = "pending" | "paid" | "processing" |
+"shipped" | "delivered" | "cancelled"
+
 interface Props{
-    status: "pending" | "paid" | "processing" |
-        "shipped" | "delivered" | "cancelled"
+    status: Status
 }
 
 export default function OrderStatus({status}: Props){
