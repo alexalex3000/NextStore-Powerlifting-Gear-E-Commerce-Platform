@@ -8,10 +8,11 @@ interface Props {
     value: string;
     className?: string;
     type?: "button" | "submit";
+    form?: string;
 }
 
-export default function Button({onClick, type, isPending, value, className}: Props) {
+export default function Button({form,onClick, type, isPending, value, className}: Props) {
     return (
-        <button type={type} onClick={onClick} disabled={isPending} className={`${styles.button} ${className}`}>{value}</button>
+        <button form={form} type={type} onClick={onClick} disabled={isPending} className={`${styles.button} ${className}`}>{value}</button>
     )
 }

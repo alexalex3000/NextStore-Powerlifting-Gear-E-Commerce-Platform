@@ -37,19 +37,15 @@ export default async function BasketPage() {
 
     const data = await getBasketList(userData.user.id);
 
-    if(!data || !data.basketItems) {
-        redirect("/login");
-    }
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
                 <h1>Your basket</h1>
-                <p>{data.basketItems.length} items</p>
+                <p>{data?.basketItems?.length ? data?.basketItems?.length : 0} Items</p>
             </div>
             <div className={styles.main}>
-                <BasketList basketProduct={data.basketItems}/>
-                <BasketInfo basketProduct={data.basketItems}/>
+                <BasketList basketProduct={data?.basketItems ? data.basketItems : []}/>
+                <BasketInfo userPhone={userData.user.phoneNumber} basketProduct={data?.basketItems ? data.basketItems : []}/>
             </div>
         </div>
     );

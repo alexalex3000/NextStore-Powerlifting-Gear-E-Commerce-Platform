@@ -30,10 +30,11 @@ export interface BasketInfoType {
 
 interface Props {
     basketProduct: BasketInfoType[];
+    userPhone: string | null;
 }
 
-export default function BasketInfo({ basketProduct }: Props) {
-    const [isOpen, setIsOpen] = useState(true);
+export default function BasketInfo({ basketProduct, userPhone }: Props) {
+    const [isOpen, setIsOpen] = useState(false);
 
     const subtotal = basketProduct.reduce((sum, item) => {
         const price = item.product?.currentPrice ?? 0;
@@ -55,12 +56,16 @@ export default function BasketInfo({ basketProduct }: Props) {
                             <h1>TOTAL</h1>
                             <span>${subtotal > 500 ? subtotal : subtotal + deliveryPrice}</span>
                         </div>
-                        <Button onClick={() => {setIsOpen(true)}} isPending={false} value={false ? "ORDER..." : "ORDER"}/>
+                        <Button
+                            onClick={() => {setIsOpen(true)}}
+                            className={basketProduct?.length ? "!bg-[var(--accent,#d6ff00)] !text-black !border-[var(--accent,#d6ff00)] !hover:bg-[#c4ea00] cursor-pointer" : "!bg-[var(--card-2,#181818)] !text-zinc-500 !border-[#282828] cursor-not-allowed"}
+                            isPending={basketProduct?.length > 0 ? false : true}
+                            value={"ORDER"}/>
                         <p className={styles.securedNote}>SSL SECURED · IRONHIVE STORE</p>
                     </div>
                 </SectionPart>
             </Section>
-            {isOpen && <OrderModal subtotal={subtotal} deliveryPrice={deliveryPrice} basketProduct={basketProduct} setIsOpen={setIsOpen}/>}
+            {isOpen && <OrderModal userPhone={userPhone} subtotal={subtotal} deliveryPrice={deliveryPrice} basketProduct={basketProduct} setIsOpen={setIsOpen}/>}
         </>
     );
 }
