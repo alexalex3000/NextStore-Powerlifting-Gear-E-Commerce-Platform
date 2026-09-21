@@ -33,18 +33,14 @@ export const reviewDrop = actionClient
             throw new Error("Session expired or invalid");
         }
 
-        try {
-            await db
-                .insert(feedbacks)
-                .values({
-                    userId: session.userId,
-                    productId: productId,
-                    title: title,
-                    date: new Date(),
-                });
-        } catch (error) {
-            throw new Error("Can't upload your review. Please try again later.");
-        }
+        await db
+            .insert(feedbacks)
+            .values({
+                userId: session.userId,
+                productId: productId,
+                title: title,
+                date: new Date(),
+            });
 
         return { success: true };
     });

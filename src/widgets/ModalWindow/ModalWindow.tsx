@@ -1,19 +1,19 @@
 "use client";
 
-import {useEffect, useCallback} from "react";
-import {useRouter} from "next/navigation";
+import { useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Stars from "@/shared/ui/Stars/Stars";
 import Bestseller from "@/entities/product/ui/demandType/Bestseller/Bestseller";
 import SelectSize from "@/entities/product/ui/SelectSize/SelectSize";
-import {Product} from "@/entities/product/model/types";
+import { Product } from "@/entities/product/model/types";
 import styles from "./ModalWindow.module.scss";
 
 interface ModalWindowProps {
     product: Product;
 }
 
-export default function ModalWindow({product}: ModalWindowProps) {
+export default function ModalWindow({ product }: ModalWindowProps) {
     const router = useRouter();
 
     const handleClose = useCallback(() => {
@@ -70,7 +70,7 @@ export default function ModalWindow({product}: ModalWindowProps) {
                         sizes="(max-width: 768px) 100vw, 450px"
                         priority
                     />
-                    <Bestseller/>
+                    <Bestseller />
                 </div>
 
                 <div className={styles.contentWrapper}>
@@ -82,36 +82,42 @@ export default function ModalWindow({product}: ModalWindowProps) {
                         </h1>
 
                         <div className={styles.ratingRow}>
-                            <Stars count={product.assessment}/>
+                            <Stars count={product.assessment} />
                             <span className={styles.feedbacksCount}>
                 ({product.numOfFeedbacks})
               </span>
                         </div>
 
-                        <div className={styles.divider}/>
-
-                        <div className={styles.pricingRow}>
-              <span className={styles.currentPrice}>
-                ${product.currentPrice}
-              </span>
-                            {product.oldPrice && (
-                                <span className={styles.oldPrice}>
-                  ${product.oldPrice}
-                </span>
-                            )}
-                        </div>
-
-                        <div
-                            className={`${styles.stockStatus} ${
-                                !isAvailable ? styles.outOfStock : ""
-                            }`}
-                        >
-                            <span className={styles.pulseDot}/>
-                            {isAvailable ? "In Stock" : "Not in Stock"}
-                        </div>
+                        <div className={styles.divider} />
                     </div>
 
-                    <SelectSize id={product.id!}/>
+                    <div className={styles.bottomSection}>
+                        <div className={styles.pricingBlock}>
+                            <div className={styles.priceRow}>
+                <span className={styles.currentPrice}>
+                  ${product.currentPrice}
+                </span>
+                                {product.oldPrice && (
+                                    <span className={styles.oldPrice}>
+                    ${product.oldPrice}
+                  </span>
+                                )}
+                            </div>
+
+                            <div
+                                className={`${styles.stockStatus} ${
+                                    !isAvailable ? styles.outOfStock : ""
+                                }`}
+                            >
+                                <span className={styles.pulseDot} />
+                                {isAvailable ? "In Stock" : "Not in Stock"}
+                            </div>
+                        </div>
+
+                        <div className={styles.controlsBlock}>
+                            <SelectSize id={product.id!} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -2,8 +2,6 @@ import styles from "./styles.module.scss";
 import AddToBasketWid from "@/widgets/AddToBasketWid/AddToBasketWid";
 import Feedback from "@/widgets/Feedback/Feedback";
 import {db} from "@/shared/db/db";
-import {eq} from "drizzle-orm";
-import {product} from "@/entities/product/model/schema";
 import ErrorToFetch from "@/entities/product/ui/ErrorToFetch/ErrorToFetch";
 
 interface Props{
@@ -13,7 +11,14 @@ interface Props{
 async function fetchProduct(id: string) {
     try {
         const item = await db.query.product.findFirst({
-            where: eq(product.id, id),
+            where: (product, {eq}) => eq(product.id, id),
+            with: {
+                feedbacks: {
+                    with: {
+                        user: true
+                    }
+                },
+            }
         });
 
         if (!item) {
@@ -40,7 +45,7 @@ export default async function ProductsPage({params}: Props){
     return (
         <div className={styles.wrapper}>
             <AddToBasketWid product={product.data}/>
-            <Feedback id={id}/>
+            <Feedback id={id} feedbacks={product.data.feedbacks}/>
         </div>
     )
 }

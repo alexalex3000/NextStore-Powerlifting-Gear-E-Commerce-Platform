@@ -16,7 +16,7 @@ export default async function UserProfile({ token }: Props) {
 
     return (
         <div className={styles.userInfo}>
-            <NoLogo title={`${userData.user.firstName}${userData.user.lastName}`}/>
+            <NoLogo size="large" title={`${userData.user.firstName}${userData.user.lastName}`}/>
 
             <h2 className={styles.userName}>{userData.user.firstName} {userData.user.lastName}</h2>
             <p className={styles.userEmail}>{userData.user.email}</p>

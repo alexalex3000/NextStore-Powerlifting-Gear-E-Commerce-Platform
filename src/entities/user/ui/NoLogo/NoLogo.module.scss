@@ -33,3 +33,38 @@
     font-size: 25px;
   }
 }
+
+.smallAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--accent-dim);
+  border: 1px solid var(--accent-border);
+
+  flex-shrink: 0;
+  user-select: none;
+
+  transition: all 0.2s ease-in-out;
+
+  @media (max-width: 480px) {
+    width: 37px;
+    height: 37px;
+  }
+}
+
+.smallInitials {
+  color: var(--accent);
+  font-family: var(--font-barlow-condensed), sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+}

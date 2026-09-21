@@ -20,7 +20,7 @@ export async function getProducts() {
 
 export default function CatalogPage(){
     return (
-        <div className="pt-4 flex gap-8 flex-col md:flex-row">
+        <div className="pt-4 flex flex-col md:flex-row gap-4">
             <CatalogSidebarWrapper/>
             <Suspense fallback={<GridLoader/>}>
                 <ProductGridWrapper/>
