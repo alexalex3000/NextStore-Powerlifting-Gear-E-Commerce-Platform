@@ -5,11 +5,12 @@ import styles from "./Section.module.scss";
 interface Props{
     children?:React.ReactNode,
     black?: boolean,
+    fullHeight?: boolean,
 }
 
-export default function Section({children, black}: Props) {
+export default function Section({children, black, fullHeight}: Props) {
     return (
-        <section className={`${styles.section} ${black ? styles.black : ""}`}>
+        <section className={`${fullHeight ? styles.fullSection : styles.section} ${black ? styles.black : ""}`}>
             {children}
         </section>
     )

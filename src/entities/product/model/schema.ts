@@ -1,4 +1,4 @@
-import { integer, pgEnum, pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
+import { integer, pgTable, timestamp, uuid, varchar} from "drizzle-orm/pg-core";
 import { users } from "../../user/model/schema";
 
 
@@ -22,6 +22,8 @@ export const feedbacks = pgTable("feedbacks", {
     productId: uuid("product_id")
         .notNull()
         .references(() => product.id, { onDelete: "cascade" }),
-    title: varchar("title"),
+    rating: integer("rating").notNull(),
+    title: varchar("title").notNull(),
     date: timestamp("date").defaultNow().notNull(),
-});
+}
+);

@@ -4,6 +4,26 @@
   grid-template-columns:1fr 1fr 1fr;
 }
 
+.noProducts{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.noProductsTop{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  height: 100vh;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
 @media(max-width:1024px){
   .grid{
     grid-template-columns:1fr 1fr;
@@ -13,6 +33,11 @@
 @media(max-width:768px){
   .grid{
     grid-template-columns:1fr 1fr 1fr;
+  }
+
+  .noProducts{
+    margin-top: 200px;
+    margin-bottom: 200px;
   }
 }
 

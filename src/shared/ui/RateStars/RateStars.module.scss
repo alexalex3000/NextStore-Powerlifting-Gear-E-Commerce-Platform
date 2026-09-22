@@ -1,0 +1,22 @@
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .starFilled {
+    fill: var(--accent);
+    color: var(--accent);
+    cursor: pointer;
+  }
+
+  .starEmpty {
+    fill: transparent;
+    color: var(--text-muted, #555);
+    cursor: pointer;
+  }
+}

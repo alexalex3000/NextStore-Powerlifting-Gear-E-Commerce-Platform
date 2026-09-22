@@ -1,23 +1,38 @@
 CREATE TYPE "public"."order_status" AS ENUM('pending', 'paid', 'processing', 'shipped', 'delivered', 'cancelled');--> statement-breakpoint
 CREATE TYPE "public"."role" AS ENUM('user', 'admin');--> statement-breakpoint
+CREATE TYPE "public"."sizesEnum" AS ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL');--> statement-breakpoint
 CREATE TABLE "order_items" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"order_id" uuid NOT NULL,
 	"product_id" uuid,
-	"price" integer NOT NULL,
-	"title" varchar(255) NOT NULL,
-	"quantity" integer NOT NULL
+	"size" "sizesEnum",
+	"count" integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "orders" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"user_id" uuid NOT NULL,
 	"status" "order_status" DEFAULT 'pending' NOT NULL,
-	"total_amount" integer NOT NULL,
+	"shipping_country" varchar(500) NOT NULL,
+	"shipping_city" varchar(500) NOT NULL,
 	"shipping_address" varchar(500) NOT NULL,
 	"phone_number" varchar(20) NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE "basket" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"user_id" uuid NOT NULL,
+	CONSTRAINT "basket_user_id_unique" UNIQUE("user_id")
+);
+--> statement-breakpoint
+CREATE TABLE "basket_items" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"basket_id" uuid NOT NULL,
+	"product_id" uuid,
+	"sizes" "sizesEnum",
+	"count" integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "sessions" (
@@ -42,7 +57,8 @@ CREATE TABLE "feedbacks" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"user_id" uuid NOT NULL,
 	"product_id" uuid NOT NULL,
-	"title" varchar,
+	"rating" integer NOT NULL,
+	"title" varchar NOT NULL,
 	"date" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
@@ -61,6 +77,9 @@ CREATE TABLE "product" (
 ALTER TABLE "order_items" ADD CONSTRAINT "order_items_order_id_orders_id_fk" FOREIGN KEY ("order_id") REFERENCES "public"."orders"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "order_items" ADD CONSTRAINT "order_items_product_id_product_id_fk" FOREIGN KEY ("product_id") REFERENCES "public"."product"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "orders" ADD CONSTRAINT "orders_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "basket" ADD CONSTRAINT "basket_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "basket_items" ADD CONSTRAINT "basket_items_basket_id_basket_id_fk" FOREIGN KEY ("basket_id") REFERENCES "public"."basket"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "basket_items" ADD CONSTRAINT "basket_items_product_id_product_id_fk" FOREIGN KEY ("product_id") REFERENCES "public"."product"("id") ON DELETE set null ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "feedbacks" ADD CONSTRAINT "feedbacks_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "feedbacks" ADD CONSTRAINT "feedbacks_product_id_product_id_fk" FOREIGN KEY ("product_id") REFERENCES "public"."product"("id") ON DELETE cascade ON UPDATE no action;

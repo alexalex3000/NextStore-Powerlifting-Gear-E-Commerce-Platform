@@ -1,5 +1,5 @@
 import { integer, pgEnum, pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
-import { users } from "../../user/model/schema";
+import {sizesEnum, users} from "../../user/model/schema";
 import { product } from "../../product/model/schema";
 
 export const orderStatusEnum = pgEnum("order_status", [
@@ -10,8 +10,6 @@ export const orderStatusEnum = pgEnum("order_status", [
     "delivered",
     "cancelled",
 ]);
-
-export const sizesEnum = pgEnum("sizes", ["XS", "S", "M", "L", "XL", "XXL"]);
 
 export const orders = pgTable("orders", {
     id: uuid("id").defaultRandom().primaryKey(),

@@ -6,10 +6,10 @@ import {getCurrentDate} from "@/shared/utils/getCurrentDate";
 import NoLogo from "@/entities/user/ui/NoLogo/NoLogo";
 import {getFirstLetters} from "@/shared/utils/getFirstLetters";
 
-interface Props{
+interface Props {
     feedback: Feedback;
 }
-//TODO развернуть до конца фидбэки
+
 export default function Review({feedback}: Props) {
     const date = getCurrentDate(new Date(feedback.date));
 
@@ -17,9 +17,8 @@ export default function Review({feedback}: Props) {
         <div className={styles.review}>
             <header className={styles.header}>
                 <div className={styles.reviewAuthor}>
-                    <div className={styles.logo}>
-                        <NoLogo title={getFirstLetters(`${feedback.user.firstName} ${feedback.user.lastName}`)} size="small"/>
-                    </div>
+                    <NoLogo title={getFirstLetters(`${feedback.user.firstName} ${feedback.user.lastName}`)}
+                            size="small"/>
                     <h2>{feedback.user.firstName ?? "New"} {feedback.user.lastName ?? "User"}</h2>
                 </div>
                 <div className={styles.assetment}>

@@ -1,5 +1,6 @@
 import Section from "@/shared/ui/Section/Section";
 import BasketProduct from "@/entities/product/ui/BasketProduct/BasketProduct";
+import NoProducts from "@/shared/ui/NoProducts/NoProducts";
 
 export interface BasketItemProduct {
     id: string;
@@ -28,12 +29,20 @@ interface Props {
 
 export default function BasketList({basketProduct}: Props){
     return (
-        <Section>
-            {
-                basketProduct.map((basketInfo: BasketInfo) => (
-                    <BasketProduct key={basketInfo.id} basketInfo={basketInfo}/>
-                ))
-            }
-        </Section>
+        <>
+            {basketProduct.length > 0 ? (
+                <Section>
+                    {
+                        basketProduct.map((basketInfo: BasketInfo) => (
+                            <BasketProduct key={basketInfo.id} basketInfo={basketInfo} />
+                        ))
+                    }
+                </Section>
+            ) : (
+                <Section fullHeight={true}>
+                    <NoProducts />
+                </Section>
+            )}
+        </>
     )
 }

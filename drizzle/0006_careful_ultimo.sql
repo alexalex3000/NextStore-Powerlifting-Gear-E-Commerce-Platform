@@ -1,1 +1,0 @@
-ALTER TABLE "basket_items" ADD COLUMN "size" "sizes";

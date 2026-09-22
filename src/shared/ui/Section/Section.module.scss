@@ -8,6 +8,17 @@
   flex-direction: column;
 }
 
+.fullSection {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .black{
   background-color: var(--bg) !important;
 }

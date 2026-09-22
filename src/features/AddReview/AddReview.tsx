@@ -3,8 +3,9 @@
 import styles from "./AddReview.module.scss";
 import Stars from "@/shared/ui/Stars/Stars";
 import SubmitButton from "@/shared/ui/buttons/SubmitButton/SubmitButton";
-import { useActionState } from "react";
+import {useActionState, useState} from "react";
 import { reviewDrop } from "@/entities/review/api/post.action";
+import RateStars from "@/shared/ui/RateStars/RateStars";
 
 interface Props {
     id: string;
@@ -19,6 +20,8 @@ type ActionState = {
 };
 
 export default function AddReview({ id }: Props) {
+    const [rating, setRating] = useState<number>(0);
+
     const [state, formAction, isPending] = useActionState<ActionState, FormData>(
         async (previousState, formData) => {
             const title = formData.get("review") as string;
@@ -67,7 +70,7 @@ export default function AddReview({ id }: Props) {
 
             <div className={styles.forLabels}>
                 <p>YOUR RATING</p>
-                <Stars count={3}/>
+                <RateStars rating={rating} setRating={setRating}/>
             </div>
 
             <div className={styles.forLabels}>

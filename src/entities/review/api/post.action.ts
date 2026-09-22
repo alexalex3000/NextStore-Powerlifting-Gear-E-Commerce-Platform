@@ -11,12 +11,13 @@ import { feedbacks } from "@/entities/product/model/schema";
 const reviewSchema = z.object({
     title: z.string().min(1, "Review text cannot be empty"),
     productId: z.string().uuid("Invalid product ID format"),
+    rate: z.number().default(1),
 });
 
 export const reviewDrop = actionClient
     .schema(reviewSchema)
     .action(async ({ parsedInput }) => {
-        const { title, productId } = parsedInput;
+        const { title, productId, rate } = parsedInput;
 
         const cookiesClient = await cookies();
         const token = cookiesClient.get("session_token");
@@ -40,6 +41,7 @@ export const reviewDrop = actionClient
                 productId: productId,
                 title: title,
                 date: new Date(),
+                rating: rate,
             });
 
         return { success: true };

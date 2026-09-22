@@ -5,85 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1788286409728,
-      "tag": "0000_regular_amphibian",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1789298087419,
-      "tag": "0001_blue_impossible_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1789305713165,
-      "tag": "0002_unusual_falcon",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1789311360718,
-      "tag": "0003_normal_pride",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1789313496340,
-      "tag": "0004_magenta_maginty",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1789313959640,
-      "tag": "0005_petite_jackal",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1789314078019,
-      "tag": "0006_careful_ultimo",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1789918098200,
-      "tag": "0007_late_centennial",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1789919294854,
-      "tag": "0008_peaceful_captain_midlands",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "7",
-      "when": 1789926375866,
-      "tag": "0009_wise_zodiak",
-      "breakpoints": true
-    },
-    {
-      "idx": 10,
-      "version": "7",
-      "when": 1789926726238,
-      "tag": "0010_military_steel_serpent",
-      "breakpoints": true
-    },
-    {
-      "idx": 11,
-      "version": "7",
-      "when": 1789927046240,
-      "tag": "0011_stiff_moonstone",
+      "when": 1790022025172,
+      "tag": "0000_skinny_dragon_man",
       "breakpoints": true
     }
   ]

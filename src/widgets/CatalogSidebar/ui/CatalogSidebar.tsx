@@ -29,6 +29,7 @@ export default function CatalogSidebar({filterData}: Props){
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
+    console.log(filterData);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -55,8 +56,8 @@ export default function CatalogSidebar({filterData}: Props){
                         ${isOpen ? "max-h-[1000px] opacity-100 mt-4" : "max-h-0 opacity-0 mt-0"}
                     `}
                 >
-                    <CategoriesFilter categories={filterData?.types ?? categories}/>
-                    <PriceFilter maxPrice={300}/>
+                    <CategoriesFilter categories={filterData?.types?.length ? filterData.types : categories}/>
+                    <PriceFilter maxPrice={filterData?.maxPrice ?? 1000}/>
                     <StarFilter />
                 </div>
             </aside>
@@ -70,7 +71,7 @@ export default function CatalogSidebar({filterData}: Props){
                 <h1 className={styles.headerTitle}>Filters</h1>
             </div>
 
-            <CategoriesFilter categories={filterData?.types ?? categories}/>
+            <CategoriesFilter categories={(filterData?.types?.length ?? 0) > 0 ? filterData!.types : categories}/>
             <PriceFilter maxPrice={filterData?.maxPrice ?? 1000}/>
             <StarFilter />
         </aside>
