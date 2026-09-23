@@ -2,6 +2,11 @@ import Image from "next/image";
 import styles from "../auth.module.scss"
 import Logo from "@/shared/ui/Logo/Logo";
 import LoginForm from "@/features/LoginForm/LoginForm";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Login",
+}
 
 export default function LoginPage() {
     return (

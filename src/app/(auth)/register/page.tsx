@@ -3,8 +3,13 @@ import styles from "../auth.module.scss"
 import Logo from "@/shared/ui/Logo/Logo";
 import LoginForm from "@/features/LoginForm/LoginForm";
 import SignUpForm from "@/features/SignUpForm/SignUpForm";
+import {Metadata} from "next";
 
-export default function LoginPage() {
+export const metadata: Metadata = {
+    title: "Registration",
+}
+
+export default function RegisterPage() {
     return (
         <div>
             <div className={styles.container}>

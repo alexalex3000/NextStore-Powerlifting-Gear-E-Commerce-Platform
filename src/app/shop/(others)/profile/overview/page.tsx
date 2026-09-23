@@ -2,6 +2,11 @@ import getUserByCookies from "@/shared/lib/getUserByCookies";
 import {cookies} from "next/headers";
 import NetworkError from "@/shared/ui/NetworkError/NetworkError";
 import ProfileInformationWrapper from "@/widgets/ProfileInformation/ProfileInformationWrapper";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Overview",
+}
 
 export default async function OverviewPage() {
     const cookiesClient = await cookies()

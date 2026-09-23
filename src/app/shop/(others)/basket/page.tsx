@@ -7,6 +7,11 @@ import {db} from "@/shared/db/db";
 import {eq} from "drizzle-orm";
 import {basket} from "@/entities/user/model/schema";
 import getUserByCookies from "@/shared/lib/getUserByCookies";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Basket",
+}
 
 export async function getBasketList(userId: string) {
     return await db.query.basket.findFirst({

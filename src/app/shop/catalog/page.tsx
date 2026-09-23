@@ -4,6 +4,11 @@ import GridLoader from "@/entities/product/ui/loaders/GridLoader/GridLoader";
 import {db} from "@/shared/db/db";
 import {product} from "@/entities/product/model/schema";
 import CatalogSidebarWrapper from "@/widgets/CatalogSidebar/CatalogSidebarWrapper";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Shop",
+}
 
 export async function getProducts() {
     try {
