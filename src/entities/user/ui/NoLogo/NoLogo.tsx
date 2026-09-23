@@ -1,3 +1,5 @@
+"use client"
+
 import styles from "./NoLogo.module.scss"
 import {getFirstLetters} from "@/shared/utils/getFirstLetters";
 
