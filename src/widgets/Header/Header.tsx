@@ -3,7 +3,7 @@ import styles from "./Header.module.scss";
 import SearchFilter from "@/features/SearchFilter/SearchFilter";
 import HeaderActions from "@/widgets/Header/ui/HeaderActions";
 import Link from "next/link";
-import {LogIn, ShoppingCart, User} from "lucide-react";
+import {LogIn, User} from "lucide-react";
 import {cookies} from "next/headers";
 
 interface Props {

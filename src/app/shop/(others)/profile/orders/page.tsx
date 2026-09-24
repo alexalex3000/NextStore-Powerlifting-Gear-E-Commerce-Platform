@@ -1,5 +1,6 @@
 import OrderGrid from "@/widgets/OrderGrid/OrderGrid";
 import {Metadata} from "next";
+import {Suspense} from "react";
 
 export const metadata: Metadata = {
     title: "Orders",
@@ -7,6 +8,8 @@ export const metadata: Metadata = {
 
 export default function OrdersPage() {
     return (
-        <OrderGrid/>
+        <Suspense fallback={null}>
+            <OrderGrid/>
+        </Suspense>
     )
 }

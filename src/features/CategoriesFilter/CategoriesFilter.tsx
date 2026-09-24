@@ -10,8 +10,6 @@ interface Props{
 }
 
 export default function CategoriesFilter({categories}: Props) {
-    console.log(categories);
-
     const queryParams = useSearchParams()
     const path = usePathname()
     const activeCategory = queryParams.get("category") ?? ""

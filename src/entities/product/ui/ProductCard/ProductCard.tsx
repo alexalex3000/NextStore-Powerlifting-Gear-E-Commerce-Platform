@@ -27,7 +27,6 @@ export default function ProductCard({product}: Props){
         <Link href={`/shop/catalog/${product.id}`}>
             <article className={styles.card}>
                 <div className={styles.imageWrapper}>
-                    <Bestseller/>
                     <Image src={product.imgUrl} alt={product.title}
                            fill
                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"

@@ -7,6 +7,7 @@ import { db } from "@/shared/db/db";
 import { eq } from "drizzle-orm";
 import { sessions } from "@/entities/user/model/schema";
 import { feedbacks } from "@/entities/product/model/schema";
+import {revalidatePath, updateTag} from "next/cache";
 
 const reviewSchema = z.object({
     title: z.string().min(1, "Review text cannot be empty"),
@@ -43,6 +44,7 @@ export const reviewDrop = actionClient
                 date: new Date(),
                 rating: rate,
             });
-
+        updateTag(`product-${productId}`);
+        revalidatePath(`/shop/catalog/${productId}`)
         return { success: true };
     });

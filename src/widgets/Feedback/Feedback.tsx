@@ -8,6 +8,7 @@ export interface Feedback{
     userId: string
     title: string | null
     productId: string
+    rating?: number
     user: {
         id: string
         role: "user" | "admin"

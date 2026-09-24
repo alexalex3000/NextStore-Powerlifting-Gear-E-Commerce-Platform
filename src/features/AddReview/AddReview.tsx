@@ -20,7 +20,7 @@ type ActionState = {
 };
 
 export default function AddReview({ id }: Props) {
-    const [rating, setRating] = useState<number>(0);
+    const [rating, setRating] = useState<number>(1);
 
     const [state, formAction, isPending] = useActionState<ActionState, FormData>(
         async (previousState, formData) => {
@@ -29,6 +29,7 @@ export default function AddReview({ id }: Props) {
             const result = await reviewDrop({
                 productId: id,
                 title,
+                rate: rating,
             });
 
             if (result?.serverError) {
@@ -42,6 +43,8 @@ export default function AddReview({ id }: Props) {
                 const titleError = result.validationErrors?.title?._errors?.[0]
                     || "Invalid input";
 
+                setRating(1)
+
                 return {
                     success: false,
                     error: { title: titleError },
@@ -51,6 +54,8 @@ export default function AddReview({ id }: Props) {
             if (result?.data?.success) {
                 return { success: true };
             }
+
+            setRating(1)
 
             return {
                 success: false,

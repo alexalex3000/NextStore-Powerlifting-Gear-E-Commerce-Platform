@@ -3,12 +3,13 @@ import {cookies} from "next/headers";
 import NetworkError from "@/shared/ui/NetworkError/NetworkError";
 import ProfileInformationWrapper from "@/widgets/ProfileInformation/ProfileInformationWrapper";
 import {Metadata} from "next";
+import {Suspense} from "react";
 
 export const metadata: Metadata = {
     title: "Overview",
 }
 
-export default async function OverviewPage() {
+export async function OverviewContent() {
     const cookiesClient = await cookies()
     const token = cookiesClient.get("session_token")?.value
 
@@ -37,4 +38,12 @@ export default async function OverviewPage() {
             <ProfileInformationWrapper userData={userData} />
         </div>
     );
+}
+
+export default function OverviewPage() {
+    return (
+        <Suspense fallback={null}>
+            <OverviewContent/>
+        </Suspense>
+    )
 }

@@ -54,3 +54,10 @@
   }
 }
 
+@media(max-width: 380px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+
+

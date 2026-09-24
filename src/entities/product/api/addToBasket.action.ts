@@ -8,6 +8,7 @@ import getUserByCookies from "@/shared/lib/getUserByCookies";
 import { db } from "@/shared/db/db";
 import { eq, and } from "drizzle-orm";
 import { basket, basketItems } from "@/entities/user/model/schema";
+import {revalidateTag, updateTag} from "next/cache";
 
 const sizes = z.enum(["XS", "S", "M", "L", "XL", "XXL", ""]);
 
@@ -79,5 +80,6 @@ export const addToBasketDrop = actionClient
             })
             .returning();
 
+        updateTag(`basket-count-${token}`)
         return { success: true, id: newItem.id };
     });

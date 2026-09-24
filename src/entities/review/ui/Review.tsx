@@ -22,7 +22,7 @@ export default function Review({feedback}: Props) {
                     <h2>{feedback.user.firstName ?? "New"} {feedback.user.lastName ?? "User"}</h2>
                 </div>
                 <div className={styles.assetment}>
-                    <Stars count={3}/>
+                    <Stars count={feedback.rating ?? 1}/>
                     <p>{date}</p>
                 </div>
             </header>

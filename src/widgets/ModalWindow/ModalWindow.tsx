@@ -70,7 +70,6 @@ export default function ModalWindow({ product }: ModalWindowProps) {
                         sizes="(max-width: 768px) 100vw, 450px"
                         priority
                     />
-                    <Bestseller />
                 </div>
 
                 <div className={styles.contentWrapper}>

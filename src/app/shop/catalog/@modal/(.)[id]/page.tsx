@@ -1,27 +1,43 @@
+import { Suspense } from "react";
 import ModalWindow from "@/widgets/ModalWindow/ModalWindow";
-import {getProducts} from "@/app/shop/catalog/page";
+import { getProducts } from "@/app/shop/catalog/page";
 import NetworkError from "@/shared/ui/NetworkError/NetworkError";
+import { db } from "@/shared/db/db";
+import { product as productSchema } from "@/entities/product/model/schema";
 
 interface Props {
-    params: Promise<{id: string}>;
+    params: Promise<{ id: string }>;
 }
 
-export default async function InterseptorGearPage({params}: Props) {
-    const {id} = await params;
+export async function generateStaticParams() {
+    "use cache";
+    const res = await db.select({ id: productSchema.id }).from(productSchema);
+    return res.map((item) => ({ id: String(item.id) }));
+}
 
-    const productObj = await getProducts()
-    const product = productObj?.data?.find((prod) => prod.id === id)
+async function InterceptorContent({ params }: Props) {
+    const { id } = await params;
 
-    if(!productObj || !productObj.success || !productObj?.data || !product) {
+    const productObj = await getProducts();
+    const product = productObj?.data?.find((prod) => String(prod.id) === String(id));
+
+    if (!productObj || !productObj.success || !productObj.data || !product) {
         return (
             <>
                 Error 404
-                <NetworkError/>
+                <NetworkError />
             </>
-        )
+        );
     }
 
+    return <ModalWindow product={product} />;
+}
+
+export default function InterseptorGearPage({ params }: Props) {
     return (
-        <ModalWindow product={product}/>
+        <Suspense fallback={null}>
+            <InterceptorContent params={params} />
+
+        </Suspense>
     );
 }

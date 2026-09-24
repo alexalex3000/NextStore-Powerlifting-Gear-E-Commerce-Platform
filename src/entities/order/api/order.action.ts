@@ -5,9 +5,10 @@ import { actionClient } from "@/shared/lib/safe-actions";
 import { db } from "@/shared/db/db";
 import { basket, basketItems, users } from "@/entities/user/model/schema";
 import { cookies } from "next/headers";
-import { eq } from "drizzle-orm";
+import {and, eq, gte, sql} from "drizzle-orm";
 import { orderItems, orders } from "@/entities/order/model/schema";
 import {revalidatePath} from "next/cache";
+import {product} from "@/entities/product/model/schema";
 
 const orderSchema = z.object({
     shippingCountry: z.string().trim().nonempty("Input your Country"),
@@ -106,6 +107,23 @@ export const orderDrop = actionClient
             await tr
                 .insert(orderItems)
                 .values(itemsToInsert);
+
+            for(let item of itemsToInsert) {
+                const [id] = await tr
+                    .update(product)
+                    .set({
+                        count: sql`${product.count}-${item.count}`
+                    })
+                    .where(and(
+                        eq(product.id, item.productId),
+                        gte(product.count, item.count)
+                    ))
+                    .returning({id: product.id});
+
+                if(!id?.id){
+                    throw new Error("Cant create order, there are too few products");
+                }
+            }
 
             await tr
                 .delete(basketItems)

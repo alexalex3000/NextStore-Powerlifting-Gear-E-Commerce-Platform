@@ -29,8 +29,6 @@ export default function CatalogSidebar({filterData}: Props){
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
-    console.log(filterData);
-
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
         handleResize();
