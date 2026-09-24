@@ -1,5 +1,5 @@
 import styles from "./GridLoader.module.scss"
-import {CardLoader} from "@/entities/product/ui/loaders/CardLoader/CardLoader";
+import {CardLoader} from "@/shared/ui/loaders/CardLoader/CardLoader";
 
 export default function GridLoader() {
     return (

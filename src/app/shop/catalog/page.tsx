@@ -1,10 +1,11 @@
 import ProductGridWrapper from "@/widgets/ProductGrid/ProductGridWrapper";
 import {Suspense} from "react";
-import GridLoader from "@/entities/product/ui/loaders/GridLoader/GridLoader";
+import GridLoader from "@/shared/ui/loaders/GridLoader/GridLoader";
 import {db} from "@/shared/db/db";
 import {product} from "@/entities/product/model/schema";
 import CatalogSidebarWrapper from "@/widgets/CatalogSidebar/CatalogSidebarWrapper";
 import {Metadata} from "next";
+import CatalogSidebarSkeleton from "@/shared/ui/loaders/CatalogSidebarSkeleton/CatalogSidebarSkeleton";
 
 export const metadata: Metadata = {
     title: "Shop",
@@ -26,7 +27,7 @@ export async function getProducts() {
 export default function CatalogPage(){
     return (
         <div className="pt-4 flex flex-col md:flex-row gap-4 justify-center">
-            <Suspense fallback={null}>
+            <Suspense fallback={<CatalogSidebarSkeleton/>}>
                 <CatalogSidebarWrapper/>
             </Suspense>
             <Suspense fallback={<GridLoader/>}>

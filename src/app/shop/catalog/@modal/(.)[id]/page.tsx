@@ -4,6 +4,7 @@ import { getProducts } from "@/app/shop/catalog/page";
 import NetworkError from "@/shared/ui/NetworkError/NetworkError";
 import { db } from "@/shared/db/db";
 import { product as productSchema } from "@/entities/product/model/schema";
+import ModalSkeleton from "@/shared/ui/loaders/ModalSkeleton/ModalSkeleton";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -17,7 +18,6 @@ export async function generateStaticParams() {
 
 async function InterceptorContent({ params }: Props) {
     const { id } = await params;
-
     const productObj = await getProducts();
     const product = productObj?.data?.find((prod) => String(prod.id) === String(id));
 
@@ -35,9 +35,8 @@ async function InterceptorContent({ params }: Props) {
 
 export default function InterseptorGearPage({ params }: Props) {
     return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<ModalSkeleton/>}>
             <InterceptorContent params={params} />
-
         </Suspense>
     );
 }

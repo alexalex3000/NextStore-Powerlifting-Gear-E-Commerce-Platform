@@ -1,11 +1,12 @@
 import {ReactNode, Suspense} from "react";
 import Sidebar from "@/widgets/Sidebar/Sidebar";
+import ProfileSidebarSkeleton from "@/shared/ui/loaders/ProfileSidebarSkeleton/ProfileSidebarSkeleton";
 
 export default function ShopLayout({ children }: { children: ReactNode }) {
     return (
         <div className="p-0 md:p-8 flex flex-col md:flex-row w-full gap-6 md:gap-8 max-w-[1200px] mx-auto">
             <div className="w-full pt-4 md:pt-0 md:w-[280px] shrink-0">
-                <Suspense fallback={null}>
+                <Suspense fallback={<ProfileSidebarSkeleton/>}>
                     <Sidebar />
                 </Suspense>
             </div>

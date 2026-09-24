@@ -4,7 +4,7 @@ import {Suspense} from "react";
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
 import UserProfile from "@/features/UserProfile/UserProfile";
-import UserProfileSkeleton from "@/shared/ui/UserProfileSkeleton/UserProfileSkeleton";
+import UserProfileSkeleton from "@/shared/ui/loaders/UserProfileSkeleton/UserProfileSkeleton";
 
 
 export default async function Sidebar() {
@@ -14,6 +14,7 @@ export default async function Sidebar() {
     if(!token){
         redirect("/shop/catalog")
     }
+
 
     return (
         <aside className={styles.sidebar}>

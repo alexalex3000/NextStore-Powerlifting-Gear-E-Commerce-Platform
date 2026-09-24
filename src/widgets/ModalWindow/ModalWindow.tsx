@@ -4,7 +4,6 @@ import { useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Stars from "@/shared/ui/Stars/Stars";
-import Bestseller from "@/entities/product/ui/demandType/Bestseller/Bestseller";
 import SelectSize from "@/entities/product/ui/SelectSize/SelectSize";
 import { Product } from "@/entities/product/model/types";
 import styles from "./ModalWindow.module.scss";

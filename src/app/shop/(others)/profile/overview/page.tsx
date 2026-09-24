@@ -4,6 +4,7 @@ import NetworkError from "@/shared/ui/NetworkError/NetworkError";
 import ProfileInformationWrapper from "@/widgets/ProfileInformation/ProfileInformationWrapper";
 import {Metadata} from "next";
 import {Suspense} from "react";
+import ProfileInfoSkeleton from "@/shared/ui/loaders/ProfileInfoSkeleton/ProfileInfoSkeleton";
 
 export const metadata: Metadata = {
     title: "Overview",
@@ -42,7 +43,7 @@ export async function OverviewContent() {
 
 export default function OverviewPage() {
     return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<ProfileInfoSkeleton/>}>
             <OverviewContent/>
         </Suspense>
     )

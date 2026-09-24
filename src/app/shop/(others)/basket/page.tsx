@@ -9,6 +9,7 @@ import { eq } from "drizzle-orm";
 import { basket } from "@/entities/user/model/schema";
 import getUserByCookies from "@/shared/lib/getUserByCookies";
 import { Metadata } from "next";
+import BasketSkeleton from "@/shared/ui/loaders/BasketSkeleton/BasketSkeleton";
 
 export const metadata: Metadata = {
     title: "Basket",
@@ -62,7 +63,7 @@ async function BasketContent() {
 
 export default function BasketPage() {
     return (
-        <Suspense fallback={<div className="p-8">Загрузка корзины...</div>}>
+        <Suspense fallback={<BasketSkeleton/>}>
             <BasketContent />
         </Suspense>
     );

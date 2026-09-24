@@ -6,6 +6,7 @@ import { db } from "@/shared/db/db";
 import ErrorToFetch from "@/entities/product/ui/ErrorToFetch/ErrorToFetch";
 import { product as productSchema } from "@/entities/product/model/schema";
 import { cacheLife, cacheTag } from "next/cache";
+import AddBasketWidSkeleton from "@/shared/ui/loaders/AddBasketWidSkeleton/AddBasketWidSkeleton";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -67,7 +68,7 @@ async function ProductDetails({ params }: Props) {
 
 export default function ProductsPage({ params }: Props) {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<AddBasketWidSkeleton/>}>
             <ProductDetails params={params} />
         </Suspense>
     );

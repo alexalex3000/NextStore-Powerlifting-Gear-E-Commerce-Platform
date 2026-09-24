@@ -1,6 +1,7 @@
 import OrderGrid from "@/widgets/OrderGrid/OrderGrid";
 import {Metadata} from "next";
 import {Suspense} from "react";
+import ProfileInfoSkeleton from "@/shared/ui/loaders/ProfileInfoSkeleton/ProfileInfoSkeleton";
 
 export const metadata: Metadata = {
     title: "Orders",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function OrdersPage() {
     return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<ProfileInfoSkeleton/>}>
             <OrderGrid/>
         </Suspense>
     )
